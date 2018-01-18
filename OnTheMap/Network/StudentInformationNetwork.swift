@@ -27,7 +27,26 @@ class StudentInformationNetwork: NSObject {
                     }
                     completionHandler(self.studentLocations, nil)
                 } else {
-                    OnTheMapErrorHandler.sendError("", code: 0) { (_, error) in
+                    OnTheMapErrorHandler.sendError("Cannot get students locations", code: 0) { (_, error) in
+                        completionHandler(nil, error)
+                    }
+                }
+            }
+        }
+    }
+
+    func getStudentLocation(uniqueKey: String, _ completionHandler: @escaping (_ data: StudentInformation?, _ error: Error?) -> Void) {
+        let parameters = [
+            "where": "{'uniqueKey':\(uniqueKey)}"
+        ]
+        _ = Network.shared.get(parameters as [String: AnyObject]) { (results, error) in
+            if let error = error {
+                completionHandler(nil, error)
+            } else {
+                if let user = results?[Network.JSONResponseKeys.User] as? [String: AnyObject] {
+                    completionHandler(StudentInformation(dictionary: user), nil)
+                } else {
+                    OnTheMapErrorHandler.sendError("Cannot get student location", code: 0) { (_, error) in
                         completionHandler(nil, error)
                     }
                 }
