@@ -12,20 +12,23 @@ import FacebookLogin
 class ViewController: UIViewController {
 
     @IBOutlet weak var rootStackView: UIStackView!
+    @IBOutlet weak var usernameTextField: UITextField!
+    @IBOutlet weak var passwordTextField: UITextField!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+
         let loginButton = LoginButton(readPermissions: [.publicProfile, .email])
-
         rootStackView.addArrangedSubview(loginButton)
+        passwordTextField.textContentType = .password
 
-        StudentInformationNetwork.shared.getStudentLocations { (students, error) in
-            if error != nil {
-                print("\(String(describing: error))")
-            } else {
-                print(students?.description ?? "")
-            }
+    }
+
+    @IBAction func login(_ sender: Any?) {
+        let username = usernameTextField.text
+        let password = passwordTextField.text
+        AuthenticationNetwork.shared.postSessionForUdacity(username: username!, password: password!) { (authentication, error) in
+
         }
     }
 }

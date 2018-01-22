@@ -8,6 +8,10 @@
 
 import UIKit
 
+enum UdacityError: Error {
+    case parseFailure
+}
+
 class Network: NSObject {
     static let shared = Network()
 
@@ -15,33 +19,15 @@ class Network: NSObject {
 
     private override init() {}
 
-    func get(_ parameters: [String: AnyObject], _ completionHandlerForGET: @escaping (_ result: AnyObject?, _ error: Error?) -> Void) -> URLSessionDataTask {
-        let request = buildParseURLRequestWithParameters(parameters)
-
-        let task = session.dataTask(with: request as URLRequest) { (data, response, error) in
-            guard error == nil else {
-                OnTheMapErrorHandler.sendError("There was an error with your request: \(error!)",
-                        completionHandlerForGET)
-                return
+    func get<T: Decodable>(_ url: URL, _ completionHandlerForGET: @escaping (_ results: T?, _ error: Error?) -> Void) -> URLSessionDataTask {
+        let request = URLRequest(url: url)
+        let task = session.dataTask(with: request) { (data, response, err) in
+            let status = ErrorHandler.checkStatus(data, response, err)
+            if status.success {
+                self.convert(data: data!, for: T.self, completionHandler: completionHandlerForGET)
+            } else {
+                completionHandlerForGET(nil, status.error)
             }
-
-            /* GUARD: Did we get a successful 2XX response? */
-            guard let statusCode = (response as? HTTPURLResponse)?.statusCode,
-                statusCode >= 200 && statusCode <= 299 else {
-
-                OnTheMapErrorHandler.sendError("Your request returned a status code other than 2xx!",
-                               completionHandlerForGET)
-                return
-            }
-
-            /* GUARD: Was there any data returned? */
-            guard let data = data else {
-                OnTheMapErrorHandler.sendError("No data was returned by the request!",
-                                               completionHandlerForGET)
-                return
-            }
-
-            self.convert(data: data, completionHandler: completionHandlerForGET)
         }
 
         task.resume()
@@ -49,38 +35,21 @@ class Network: NSObject {
         return task
     }
 
-    func post(_ parameters: [String: AnyObject], jsonBody: [String: String], _ completionHandlerForPOST: @escaping (_ result: AnyObject?, _ error: Error?) -> Void) -> URLSessionDataTask {
-        let request = buildParseURLRequestWithParameters(parameters)
+    func post<T: Decodable>(_ url: URL, _ body: String?, _ completionHandlerForPOST: @escaping (_ results: T?, _ error: Error?) -> Void) -> URLSessionDataTask {
+        let request = NSMutableURLRequest(url: url)
         request.httpMethod = "POST"
-        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         request.addValue("application/json", forHTTPHeaderField: "Accept")
-        request.httpBody = jsonBody.description.data(using: String.Encoding.utf8)
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.httpBody = body?.data(using: .utf8)
 
         let task = session.dataTask(with: request as URLRequest) { (data, response, error) in
-            guard error == nil else {
-                OnTheMapErrorHandler.sendError("There was an error with your request: \(error!)",
-                    completionHandlerForPOST)
-                return
+            let status = ErrorHandler.checkStatus(data, response, error)
+            if status.success {
+                let fromUdacity = (url.absoluteString.range(of: "udacity") != nil)
+                self.convert(data: data!, for: T.self, fromUdacity, completionHandler: completionHandlerForPOST)
+            } else {
+                completionHandlerForPOST(nil, status.error)
             }
-
-            /* GUARD: Did we get a successful 2XX response? */
-            guard let statusCode = (response as? HTTPURLResponse)?.statusCode,
-                statusCode >= 200 && statusCode <= 299 else {
-
-                OnTheMapErrorHandler.sendError("Your request returned a status code other than 2xx!",
-                                               completionHandlerForPOST)
-                return
-            }
-
-            /* GUARD: Was there any data returned? */
-            guard let data = data else {
-                OnTheMapErrorHandler.sendError("No data was returned by the request!",
-                                               completionHandlerForPOST)
-                return
-            }
-
-            self.convert(data: data, completionHandler: completionHandlerForPOST)
-
         }
 
         task.resume()
@@ -88,30 +57,35 @@ class Network: NSObject {
         return task
     }
 
-    private func convert(data: Data, completionHandler: @escaping (_ result: AnyObject?, _ error: Error?) -> Void) {
-        var parsedResult: AnyObject! = nil
+    private func convert<T: Decodable>(data: Data, for decodingType: T.Type, _ fromUdacity: Bool = false, completionHandler: @escaping (_ result: T?, _ error: Error?) -> Void) {
         do {
-            parsedResult = try JSONSerialization.jsonObject(with: data, options: .allowFragments) as AnyObject
-        } catch let error {
-            OnTheMapErrorHandler.sendError("Could not parse the data as JSON: \(error)", completionHandler)
-        }
+            var data = data
+            if fromUdacity {
+                data = try udacityDataHandler(data: data)
+            }
 
-        completionHandler(parsedResult, nil)
+            let json = try JSONDecoder().decode(decodingType, from: data)
+
+            completionHandler(json, nil)
+        } catch let error {
+            let err = ErrorHandler.buildError(message: "Could not parse the data as JSON: \(error)", code: 0, err: error)
+            completionHandler(nil, err)
+        }
     }
 
-    private func buildParseURLRequestWithParameters(_ parameters: [String: AnyObject]) -> NSMutableURLRequest {
-        let request = NSMutableURLRequest(url: Network.parseURLWithParameters(parameters))
-        request.addValue(Network.Constants.ApiKey, forHTTPHeaderField: Network.HeaderKeys.ParseRESTApiID)
-        request.addValue(Network.Constants.AppKey, forHTTPHeaderField: Network.HeaderKeys.ParseApplicationID)
+    class func buildParseURLRequest(with parameters: [String: AnyObject], at path: String?) -> NSMutableURLRequest {
+        let request = NSMutableURLRequest(url: Network.buildParseURL(with: parameters, at: path))
+        request.addValue(Network.ParseConstants.ApiKey, forHTTPHeaderField: Network.HeaderKeys.ParseRESTApiID)
+        request.addValue(Network.ParseConstants.AppKey, forHTTPHeaderField: Network.HeaderKeys.ParseApplicationID)
 
         return request
     }
 
-    class func parseURLWithParameters(_ parameters: [String: AnyObject]) -> URL {
+    class func buildURL(with scheme: String, for host:String, at pathExtension: String, parameters: [String: AnyObject]) -> URL {
         var components = URLComponents()
-        components.scheme = Network.Constants.ApiScheme
-        components.host = Network.Constants.ApiHost
-        components.path = Network.Constants.ApiPath
+        components.scheme = scheme
+        components.host = host
+        components.path = pathExtension
         components.queryItems = [URLQueryItem]()
 
         for (key, value) in parameters {
@@ -120,6 +94,31 @@ class Network: NSObject {
         }
 
         return components.url!
+    }
+
+    class func buildUdacityURL(with parameters: [String: AnyObject], at path: String?) -> URL {
+        return buildURL(with: Network.UdacityConstants.ApiScheme,
+                        for: Network.UdacityConstants.ApiHost,
+                        at: Network.UdacityConstants.ApiPath + (path ?? ""),
+                        parameters: parameters)
+    }
+
+    class func buildParseURL(with parameters: [String: AnyObject], at path: String?) -> URL {
+        return buildURL(with: Network.ParseConstants.ApiScheme,
+                        for: Network.ParseConstants.ApiHost,
+                        at: Network.ParseConstants.ApiPath + (path ?? ""),
+                        parameters: parameters)
+
+    }
+
+    private func udacityDataHandler(data: Data?) throws -> Data {
+
+        guard let data = data else {
+            throw UdacityError.parseFailure
+        }
+
+        let range = Range(5..<data.count)
+        return data.subdata(in: range)
 
     }
 }

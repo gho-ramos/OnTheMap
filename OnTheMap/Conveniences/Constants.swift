@@ -10,7 +10,7 @@ import Foundation
 
 extension Network {
 
-    struct Constants {
+    struct ParseConstants {
         static let ApiKey = "QuWThTdiRmTux3YaDseUSEpUKo7aBYM737yKd4gY"
         static let AppKey = "QrX47CA9cyuGewLdsL7o5Eb8iug6Em8ye0dnAbIr"
 
@@ -19,6 +19,17 @@ extension Network {
         static let ApiPath = "/parse/classes/StudentLocation"
 
         static let AuthenticationUrl = "https://www.udacity.com/api/session"
+    }
+
+    struct UdacityConstants {
+        static let ApiScheme = "https"
+        static let ApiHost = "www.udacity.com"
+        static let ApiPath = "/api"
+    }
+
+    struct UdacityMethods {
+        static let Session = "/session"
+        static let UsersUserID = "/users/#userid"
     }
 
     struct HeaderKeys {

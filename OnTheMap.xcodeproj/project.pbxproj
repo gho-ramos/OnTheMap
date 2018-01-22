@@ -7,9 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		5525D8AA2010148400100E37 /* StudentInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5525D8A92010148400100E37 /* StudentInformation.swift */; };
-		5525D8AE2010425300100E37 /* StudentInformationNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5525D8AD2010425300100E37 /* StudentInformationNetwork.swift */; };
-		5525D8B1201047EC00100E37 /* OnTheMapErrorHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5525D8B0201047EC00100E37 /* OnTheMapErrorHandler.swift */; };
+		5525D8B62012CCE900100E37 /* AuthenticationNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5525D8B52012CCE900100E37 /* AuthenticationNetwork.swift */; };
+		5525D8BC20156EC600100E37 /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5525D8BB20156EC600100E37 /* Account.swift */; };
+		5525D8BE20156ED000100E37 /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5525D8BD20156ED000100E37 /* Session.swift */; };
+		5525D8C0201574A100100E37 /* Authentication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5525D8BF201574A100100E37 /* Authentication.swift */; };
+		5525D8C2201588B500100E37 /* ErrorHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5525D8C1201588B500100E37 /* ErrorHandler.swift */; };
+		5525D8C620158C5500100E37 /* RequestStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5525D8C520158C5500100E37 /* RequestStatus.swift */; };
 		5556B6E9200EEF7800A3A88B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5556B6E8200EEF7800A3A88B /* AppDelegate.swift */; };
 		5556B6EB200EEF7800A3A88B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5556B6EA200EEF7800A3A88B /* ViewController.swift */; };
 		5556B6EE200EEF7800A3A88B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5556B6EC200EEF7800A3A88B /* Main.storyboard */; };
@@ -103,9 +106,12 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		5525D8A92010148400100E37 /* StudentInformation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentInformation.swift; sourceTree = "<group>"; };
-		5525D8AD2010425300100E37 /* StudentInformationNetwork.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentInformationNetwork.swift; sourceTree = "<group>"; };
-		5525D8B0201047EC00100E37 /* OnTheMapErrorHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnTheMapErrorHandler.swift; sourceTree = "<group>"; };
+		5525D8B52012CCE900100E37 /* AuthenticationNetwork.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationNetwork.swift; sourceTree = "<group>"; };
+		5525D8BB20156EC600100E37 /* Account.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
+		5525D8BD20156ED000100E37 /* Session.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
+		5525D8BF201574A100100E37 /* Authentication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Authentication.swift; sourceTree = "<group>"; };
+		5525D8C1201588B500100E37 /* ErrorHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorHandler.swift; sourceTree = "<group>"; };
+		5525D8C520158C5500100E37 /* RequestStatus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestStatus.swift; sourceTree = "<group>"; };
 		5556B6E5200EEF7800A3A88B /* OnTheMap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OnTheMap.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5556B6E8200EEF7800A3A88B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5556B6EA200EEF7800A3A88B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -207,7 +213,7 @@
 		5556B716200EF5B600A3A88B /* Network */ = {
 			isa = PBXGroup;
 			children = (
-				5525D8AD2010425300100E37 /* StudentInformationNetwork.swift */,
+				5525D8B52012CCE900100E37 /* AuthenticationNetwork.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -215,7 +221,9 @@
 		5556B717200EF5BF00A3A88B /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				5525D8A92010148400100E37 /* StudentInformation.swift */,
+				5525D8BB20156EC600100E37 /* Account.swift */,
+				5525D8BD20156ED000100E37 /* Session.swift */,
+				5525D8BF201574A100100E37 /* Authentication.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -268,9 +276,10 @@
 		5556B75D200F014500A3A88B /* Conveniences */ = {
 			isa = PBXGroup;
 			children = (
-				5556B75E200F015B00A3A88B /* Network.swift */,
 				5556B760200F02CA00A3A88B /* Constants.swift */,
-				5525D8B0201047EC00100E37 /* OnTheMapErrorHandler.swift */,
+				5525D8C1201588B500100E37 /* ErrorHandler.swift */,
+				5556B75E200F015B00A3A88B /* Network.swift */,
+				5525D8C520158C5500100E37 /* RequestStatus.swift */,
 			);
 			path = Conveniences;
 			sourceTree = "<group>";
@@ -460,13 +469,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5525D8BE20156ED000100E37 /* Session.swift in Sources */,
+				5525D8B62012CCE900100E37 /* AuthenticationNetwork.swift in Sources */,
 				5556B6EB200EEF7800A3A88B /* ViewController.swift in Sources */,
 				5556B6E9200EEF7800A3A88B /* AppDelegate.swift in Sources */,
 				5556B75F200F015B00A3A88B /* Network.swift in Sources */,
-				5525D8AE2010425300100E37 /* StudentInformationNetwork.swift in Sources */,
-				5525D8AA2010148400100E37 /* StudentInformation.swift in Sources */,
+				5525D8C620158C5500100E37 /* RequestStatus.swift in Sources */,
+				5525D8BC20156EC600100E37 /* Account.swift in Sources */,
 				5556B761200F02CA00A3A88B /* Constants.swift in Sources */,
-				5525D8B1201047EC00100E37 /* OnTheMapErrorHandler.swift in Sources */,
+				5525D8C2201588B500100E37 /* ErrorHandler.swift in Sources */,
+				5525D8C0201574A100100E37 /* Authentication.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
