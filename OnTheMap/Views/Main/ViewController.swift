@@ -27,15 +27,27 @@ class ViewController: UIViewController {
     @IBAction func login(_ sender: Any?) {
         let username = usernameTextField.text
         let password = passwordTextField.text
-        AuthenticationNetwork.shared.postSessionForUdacity(username: username!, password: password!) { (authentication, error) in
-
+        StudentInformationClient.shared.getStudentsLocation([:]) { (studentsLocations, error) in
+            print(studentsLocations?.description, error)
         }
+//        AuthenticationClient.shared.authenticate(username: username!, password: password!) { (authentication, error) in
+//
+//        }
     }
 }
 
 extension ViewController: LoginButtonDelegate {
     func loginButtonDidCompleteLogin(_ loginButton: LoginButton, result: LoginResult) {
-
+        switch result {
+        case .failed(let error):
+            print("\(error)")
+        case .cancelled:
+            print("canceled")
+        case .success(grantedPermissions: _, declinedPermissions: _, token: let token):
+            AuthenticationClient.shared.authenticate(with: token.authenticationToken) { (authentication, error) in
+                
+            }
+        }
     }
 
     func loginButtonDidLogOut(_ loginButton: LoginButton) {

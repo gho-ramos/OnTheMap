@@ -22,17 +22,23 @@ class ErrorHandler: NSObject {
 
     class func checkStatus(_ data: Data?, _ response: URLResponse?, _ err: Error?) -> RequestStatus {
         guard err == nil else {
-            let error = ErrorHandler.buildError(message: "There was an error with your request", code: 1, err: err)
+            let error = ErrorHandler.buildError(message: "There was an error with your request",
+                                                code: 0,
+                                                err: err)
             return RequestStatus(success: false, error: error)
         }
 
         guard let statusCode = (response as? HTTPURLResponse)?.statusCode, statusCode >= 200 && statusCode <= 299 else {
-            let error = ErrorHandler.buildError(message: "There was an error with your request", code: 1, err: err)
+            let error = ErrorHandler.buildError(message: "There was an error with your request",
+                                                code: 0,
+                                                err: err)
             return RequestStatus(success: false, error: error)
         }
 
         guard data != nil else {
-            let error = ErrorHandler.buildError(message: "No data was returned by the request", code: 1, err: err)
+            let error = ErrorHandler.buildError(message: "No data was returned by the request",
+                                                code: 0,
+                                                err: err)
             return RequestStatus(success: false, error: error)
         }
         return RequestStatus(success: true, error: nil)

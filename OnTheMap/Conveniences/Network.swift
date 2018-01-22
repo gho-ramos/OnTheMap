@@ -2,123 +2,105 @@
 //  Network.swift
 //  OnTheMap
 //
-//  Created by Guilherme Ramos on 17/01/2018.
+//  Created by Guilherme on 1/22/18.
 //  Copyright © 2018 Progeekt. All rights reserved.
 //
 
-import UIKit
-
-enum UdacityError: Error {
-    case parseFailure
-}
+import Foundation
 
 class Network: NSObject {
     static let shared = Network()
 
-    private var session = URLSession.shared
+    private let session = URLSession.shared
 
-    private override init() {}
+    private override init() { }
 
-    func get<T: Decodable>(_ url: URL, _ completionHandlerForGET: @escaping (_ results: T?, _ error: Error?) -> Void) -> URLSessionDataTask {
-        let request = URLRequest(url: url)
-        let task = session.dataTask(with: request) { (data, response, err) in
-            let status = ErrorHandler.checkStatus(data, response, err)
-            if status.success {
-                self.convert(data: data!, for: T.self, completionHandler: completionHandlerForGET)
-            } else {
-                completionHandlerForGET(nil, status.error)
-            }
+    typealias CompletionHandler = ((AnyObject?, Error?) -> Void)
+
+    func get(request: NSMutableURLRequest, completion: @escaping CompletionHandler) {
+        let task = taskHandler(request: request as URLRequest) { (result, error) in
+            completion(result, error)
+        }
+
+        task.resume()
+    }
+
+    func delete(request: NSMutableURLRequest, completion: @escaping CompletionHandler) {
+        request.httpMethod = "DELETE"
+        request.addValue("application/json", forHTTPHeaderField: "Accept")
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+
+        let task = taskHandler(request: request as URLRequest) { (result, error) in
+            completion(result, error)
         }
 
         task.resume()
 
-        return task
     }
 
-    func post<T: Decodable>(_ url: URL, _ body: String?, _ completionHandlerForPOST: @escaping (_ results: T?, _ error: Error?) -> Void) -> URLSessionDataTask {
-        let request = NSMutableURLRequest(url: url)
+    func post(request: NSMutableURLRequest, body: String, completion: @escaping CompletionHandler) {
         request.httpMethod = "POST"
         request.addValue("application/json", forHTTPHeaderField: "Accept")
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-        request.httpBody = body?.data(using: .utf8)
+        request.httpBody = body.data(using: .utf8)
 
-        let task = session.dataTask(with: request as URLRequest) { (data, response, error) in
-            let status = ErrorHandler.checkStatus(data, response, error)
-            if status.success {
-                let fromUdacity = (url.absoluteString.range(of: "udacity") != nil)
-                self.convert(data: data!, for: T.self, fromUdacity, completionHandler: completionHandlerForPOST)
-            } else {
-                completionHandlerForPOST(nil, status.error)
-            }
+        let task = taskHandler(request: request as URLRequest) { (result, error) in
+            completion(result, error)
         }
 
         task.resume()
+    }
 
+    func taskHandler(request: URLRequest, completionHandler completion: @escaping CompletionHandler) -> URLSessionDataTask {
+        let shouldExtractRange = request.url?.absoluteString.range(of: UdacityConstants.ApiHost) != nil
+        let task = session.dataTask(with: request) { (data, response, error) in
+            let status = ErrorHandler.checkStatus(data, response, error)
+            if status.success {
+                var data = data
+                if shouldExtractRange {
+                    let range = Range(5..<data!.count)
+                    data = data?.subdata(in: range)
+                }
+                do {
+                    let result = try JSONSerialization.jsonObject(with: data!, options: .mutableContainers)
+                    completion(result as AnyObject, nil)
+                } catch let error {
+                    let e = ErrorHandler.buildError(message: "Cannot convert data to JSON", code: 1, err: error)
+                    completion(nil, e)
+                }
+            } else {
+                completion(nil, status.error)
+            }
+        }
         return task
     }
 
-    private func convert<T: Decodable>(data: Data, for decodingType: T.Type, _ fromUdacity: Bool = false, completionHandler: @escaping (_ result: T?, _ error: Error?) -> Void) {
-        do {
-            var data = data
-            if fromUdacity {
-                data = try udacityDataHandler(data: data)
-            }
-
-            let json = try JSONDecoder().decode(decodingType, from: data)
-
-            completionHandler(json, nil)
-        } catch let error {
-            let err = ErrorHandler.buildError(message: "Could not parse the data as JSON: \(error)", code: 0, err: error)
-            completionHandler(nil, err)
-        }
-    }
-
-    class func buildParseURLRequest(with parameters: [String: AnyObject], at path: String?) -> NSMutableURLRequest {
-        let request = NSMutableURLRequest(url: Network.buildParseURL(with: parameters, at: path))
-        request.addValue(Network.ParseConstants.ApiKey, forHTTPHeaderField: Network.HeaderKeys.ParseRESTApiID)
-        request.addValue(Network.ParseConstants.AppKey, forHTTPHeaderField: Network.HeaderKeys.ParseApplicationID)
-
-        return request
-    }
-
-    class func buildURL(with scheme: String, for host:String, at pathExtension: String, parameters: [String: AnyObject]) -> URL {
-        var components = URLComponents()
-        components.scheme = scheme
-        components.host = host
-        components.path = pathExtension
+    private class func buildURL(forComponents components: URLComponents, with parameters: [String: AnyObject]) -> URL? {
+        var components = components
         components.queryItems = [URLQueryItem]()
 
         for (key, value) in parameters {
-            let queryItem = URLQueryItem(name: key, value: "\(value)")
-            components.queryItems!.append(queryItem)
+            components.queryItems?.append(URLQueryItem(name: key, value: value as? String))
         }
 
         return components.url!
     }
 
-    class func buildUdacityURL(with parameters: [String: AnyObject], at path: String?) -> URL {
-        return buildURL(with: Network.UdacityConstants.ApiScheme,
-                        for: Network.UdacityConstants.ApiHost,
-                        at: Network.UdacityConstants.ApiPath + (path ?? ""),
-                        parameters: parameters)
+    class func buildParseURL(with parameters: [String: AnyObject], _ pathExtension: String?) -> URL {
+        var components = URLComponents()
+        components.scheme = ParseConstants.ApiScheme
+        components.host = ParseConstants.ApiHost
+        components.path = ParseConstants.ApiPath + (pathExtension ?? "")
+
+        return buildURL(forComponents: components, with: parameters)!
     }
 
-    class func buildParseURL(with parameters: [String: AnyObject], at path: String?) -> URL {
-        return buildURL(with: Network.ParseConstants.ApiScheme,
-                        for: Network.ParseConstants.ApiHost,
-                        at: Network.ParseConstants.ApiPath + (path ?? ""),
-                        parameters: parameters)
+    class func buildUdacityURL(with parameters: [String: AnyObject], _ pathExtension: String?) -> URL {
+        var components = URLComponents()
+        components.scheme = UdacityConstants.ApiScheme
+        components.host = UdacityConstants.ApiHost
+        components.path = UdacityConstants.ApiPath + (pathExtension ?? "")
 
-    }
-
-    private func udacityDataHandler(data: Data?) throws -> Data {
-
-        guard let data = data else {
-            throw UdacityError.parseFailure
-        }
-
-        let range = Range(5..<data.count)
-        return data.subdata(in: range)
-
+        return buildURL(forComponents: components, with: parameters)!
     }
 }

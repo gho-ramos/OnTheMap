@@ -8,7 +8,16 @@
 
 import Foundation
 
-struct Account: Decodable {
+struct Account {
     let registered: Bool?
     let key: String?
+
+    enum Keys: String {
+        case registered, key
+    }
+
+    init(dictionary: [String: AnyObject]) {
+        registered = dictionary[Keys.registered.rawValue] as? Bool
+        key = dictionary[Keys.key.rawValue] as? String
+    }
 }

@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		5525D8B62012CCE900100E37 /* AuthenticationNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5525D8B52012CCE900100E37 /* AuthenticationNetwork.swift */; };
 		5525D8BC20156EC600100E37 /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5525D8BB20156EC600100E37 /* Account.swift */; };
 		5525D8BE20156ED000100E37 /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5525D8BD20156ED000100E37 /* Session.swift */; };
 		5525D8C0201574A100100E37 /* Authentication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5525D8BF201574A100100E37 /* Authentication.swift */; };
@@ -26,8 +25,11 @@
 		5556B755200EFB0600A3A88B /* FacebookLogin.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 5556B736200EF9F500A3A88B /* FacebookLogin.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		5556B758200EFB0600A3A88B /* FacebookShare.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5556B738200EF9F500A3A88B /* FacebookShare.framework */; };
 		5556B759200EFB0600A3A88B /* FacebookShare.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 5556B738200EF9F500A3A88B /* FacebookShare.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		5556B75F200F015B00A3A88B /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5556B75E200F015B00A3A88B /* Network.swift */; };
 		5556B761200F02CA00A3A88B /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5556B760200F02CA00A3A88B /* Constants.swift */; };
+		E6727F4220160AA6005735AF /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6727F4120160AA6005735AF /* Network.swift */; };
+		E6727F4420161848005735AF /* AuthenticationClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6727F4320161848005735AF /* AuthenticationClient.swift */; };
+		E6727F482016559C005735AF /* StudentLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6727F472016559C005735AF /* StudentLocation.swift */; };
+		E6727F4A20165D52005735AF /* StudentInformationClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6727F4920165D52005735AF /* StudentInformationClient.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -106,7 +108,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		5525D8B52012CCE900100E37 /* AuthenticationNetwork.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationNetwork.swift; sourceTree = "<group>"; };
 		5525D8BB20156EC600100E37 /* Account.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
 		5525D8BD20156ED000100E37 /* Session.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
 		5525D8BF201574A100100E37 /* Authentication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Authentication.swift; sourceTree = "<group>"; };
@@ -126,8 +127,11 @@
 		5556B708200EEF7800A3A88B /* OnTheMapUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnTheMapUITests.swift; sourceTree = "<group>"; };
 		5556B70A200EEF7800A3A88B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5556B724200EF9F400A3A88B /* FacebookSwift.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = FacebookSwift.xcodeproj; path = "../facebook-sdk-swift/FacebookSwift.xcodeproj"; sourceTree = "<group>"; };
-		5556B75E200F015B00A3A88B /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
 		5556B760200F02CA00A3A88B /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		E6727F4120160AA6005735AF /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
+		E6727F4320161848005735AF /* AuthenticationClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationClient.swift; sourceTree = "<group>"; };
+		E6727F472016559C005735AF /* StudentLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentLocation.swift; sourceTree = "<group>"; };
+		E6727F4920165D52005735AF /* StudentInformationClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentInformationClient.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -213,7 +217,8 @@
 		5556B716200EF5B600A3A88B /* Network */ = {
 			isa = PBXGroup;
 			children = (
-				5525D8B52012CCE900100E37 /* AuthenticationNetwork.swift */,
+				E6727F4320161848005735AF /* AuthenticationClient.swift */,
+				E6727F4920165D52005735AF /* StudentInformationClient.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -224,6 +229,7 @@
 				5525D8BB20156EC600100E37 /* Account.swift */,
 				5525D8BD20156ED000100E37 /* Session.swift */,
 				5525D8BF201574A100100E37 /* Authentication.swift */,
+				E6727F472016559C005735AF /* StudentLocation.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -278,8 +284,8 @@
 			children = (
 				5556B760200F02CA00A3A88B /* Constants.swift */,
 				5525D8C1201588B500100E37 /* ErrorHandler.swift */,
-				5556B75E200F015B00A3A88B /* Network.swift */,
 				5525D8C520158C5500100E37 /* RequestStatus.swift */,
+				E6727F4120160AA6005735AF /* Network.swift */,
 			);
 			path = Conveniences;
 			sourceTree = "<group>";
@@ -469,14 +475,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E6727F4420161848005735AF /* AuthenticationClient.swift in Sources */,
+				E6727F482016559C005735AF /* StudentLocation.swift in Sources */,
 				5525D8BE20156ED000100E37 /* Session.swift in Sources */,
-				5525D8B62012CCE900100E37 /* AuthenticationNetwork.swift in Sources */,
 				5556B6EB200EEF7800A3A88B /* ViewController.swift in Sources */,
 				5556B6E9200EEF7800A3A88B /* AppDelegate.swift in Sources */,
-				5556B75F200F015B00A3A88B /* Network.swift in Sources */,
 				5525D8C620158C5500100E37 /* RequestStatus.swift in Sources */,
 				5525D8BC20156EC600100E37 /* Account.swift in Sources */,
+				E6727F4220160AA6005735AF /* Network.swift in Sources */,
 				5556B761200F02CA00A3A88B /* Constants.swift in Sources */,
+				E6727F4A20165D52005735AF /* StudentInformationClient.swift in Sources */,
 				5525D8C2201588B500100E37 /* ErrorHandler.swift in Sources */,
 				5525D8C0201574A100100E37 /* Authentication.swift in Sources */,
 			);
