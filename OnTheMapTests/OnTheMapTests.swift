@@ -21,16 +21,21 @@ class OnTheMapTests: XCTestCase {
         super.tearDown()
     }
 
-    func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-    }
+    func testStudentInformation() {
+        let studentLocation = StudentLocation(dictionary: [
+            "createdAt": "2015-02-24T22:35:30.639Z" as AnyObject,
+            "firstName": "John" as AnyObject,
+            "lastName": "Doe" as AnyObject,
+            "latitude": 37.322998 as AnyObject,
+            "longitude": -122.032182 as AnyObject,
+            "mapString": "Cupertino, CA" as AnyObject,
+            "mediaURL": "https://udacity.com" as AnyObject,
+            "objectId": "8ZEuHF5uX8" as AnyObject,
+            "uniqueKey": "1234" as AnyObject,
+            "updatedAt": "2015-03-11T02:42:59.217Z" as AnyObject
+        ])
 
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
+        print(studentLocation.description())
     }
 
 }

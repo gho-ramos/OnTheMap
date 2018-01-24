@@ -62,7 +62,7 @@ class Network: NSObject {
                     data = data?.subdata(in: range)
                 }
                 do {
-                    let result = try JSONSerialization.jsonObject(with: data!, options: .mutableContainers)
+                    let result = try JSONSerialization.jsonObject(with: data!, options: .allowFragments)
                     completion(result as AnyObject, nil)
                 } catch let error {
                     let e = ErrorHandler.buildError(message: "Cannot convert data to JSON", code: 1, err: error)

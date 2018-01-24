@@ -27,9 +27,7 @@ class ViewController: UIViewController {
     @IBAction func login(_ sender: Any?) {
         let username = usernameTextField.text
         let password = passwordTextField.text
-        StudentInformationClient.shared.getStudentsLocation([:]) { (studentsLocations, error) in
-            print(studentsLocations?.description, error)
-        }
+        
 //        AuthenticationClient.shared.authenticate(username: username!, password: password!) { (authentication, error) in
 //
 //        }
