@@ -32,16 +32,4 @@ struct StudentLocation {
         createdAt = dictionary["createdAt"] as? String
         updatedAt = dictionary["updatedAt"] as? String
     }
-
-    func description() -> String {
-        let mirror = Mirror(reflecting: self)
-        let properties = mirror.children.map { (property) -> String in
-            if let label = property.label, let value = property.value as? String {
-                return "\"\(label)\": \"\(value)\""
-            }
-            return ""
-        }
-
-        return "{ \(properties.joined(separator: ",")) }"
-    }
 }

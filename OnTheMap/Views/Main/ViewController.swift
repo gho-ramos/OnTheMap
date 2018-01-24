@@ -27,10 +27,17 @@ class ViewController: UIViewController {
     @IBAction func login(_ sender: Any?) {
         let username = usernameTextField.text
         let password = passwordTextField.text
-        
+
 //        AuthenticationClient.shared.authenticate(username: username!, password: password!) { (authentication, error) in
 //
 //        }
+        completeLogin()
+    }
+
+    private func completeLogin() {
+        let navigationTabController = UIStoryboard.init(name: "Main", bundle: nil)
+            .instantiateViewController(withIdentifier: "NavigationTabBarController")
+        present(navigationTabController, animated: true, completion: nil)
     }
 }
 
@@ -43,7 +50,7 @@ extension ViewController: LoginButtonDelegate {
             print("canceled")
         case .success(grantedPermissions: _, declinedPermissions: _, token: let token):
             AuthenticationClient.shared.authenticate(with: token.authenticationToken) { (authentication, error) in
-                
+
             }
         }
     }
