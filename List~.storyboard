@@ -109,10 +109,26 @@
             </objects>
             <point key="canvasLocation" x="-246" y="33"/>
         </scene>
+        <!--View Controller-->
+        <scene sceneID="4Ab-eh-52M">
+            <objects>
+                <viewController id="HOl-cJ-ShF" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="dRk-WB-o2w">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="b0j-wZ-We1"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="" image="icon_listview-deselected" selectedImage="icon_listview-selected" id="rgZ-G1-nPu"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="jva-tH-M0o" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1258" y="1018"/>
+        </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="Bgh-5A-urh">
             <objects>
-                <tabBarController storyboardIdentifier="NavigationTabBarController" automaticallyAdjustsScrollViewInsets="NO" id="hxj-5p-wrn" sceneMemberID="viewController">
+                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="hxj-5p-wrn" sceneMemberID="viewController">
                     <toolbarItems/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="qpQ-US-d9J">
                         <autoresizingMask key="autoresizingMask"/>
@@ -120,7 +136,7 @@
                     </tabBar>
                     <connections>
                         <segue destination="kKj-f3-SnK" kind="relationship" relationship="viewControllers" id="gjt-3M-L4W"/>
-                        <segue destination="jpE-YE-tQD" kind="relationship" relationship="viewControllers" id="6AF-o3-kfB"/>
+                        <segue destination="HOl-cJ-ShF" kind="relationship" relationship="viewControllers" id="6AF-o3-kfB"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RlL-BQ-6NA" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -131,28 +147,16 @@
         <scene sceneID="A73-ul-iHX">
             <objects>
                 <viewControllerPlaceholder storyboardName="Map" id="kKj-f3-SnK" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="" image="icon_mapview-deselected" selectedImage="icon_mapview-selected" id="nXY-fH-jbh"/>
+                    <tabBarItem key="tabBarItem" title="Item" id="nXY-fH-jbh"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ilt-Gp-onB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="603" y="505"/>
-        </scene>
-        <!--List-->
-        <scene sceneID="wae-AI-2u4">
-            <objects>
-                <viewControllerPlaceholder storyboardName="List" id="jpE-YE-tQD" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="" image="icon_listview-deselected" selectedImage="icon_listview-selected" id="vT4-b7-yvZ"/>
-                </viewControllerPlaceholder>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="3ba-9Y-ydd" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1113" y="505"/>
+            <point key="canvasLocation" x="454" y="1018"/>
         </scene>
     </scenes>
     <resources>
         <image name="icon_listview-deselected" width="75" height="50"/>
         <image name="icon_listview-selected" width="75" height="50"/>
-        <image name="icon_mapview-deselected" width="75" height="50"/>
-        <image name="icon_mapview-selected" width="75" height="50"/>
         <image name="logo-u" width="62" height="62"/>
         <namedColor name="Light Blue">
             <color red="0.25098039215686274" green="0.61568627450980395" blue="0.86274509803921573" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

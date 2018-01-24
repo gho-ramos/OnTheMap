@@ -25,14 +25,21 @@ class ViewController: UIViewController {
     }
 
     @IBAction func login(_ sender: Any?) {
-        let username = usernameTextField.text
-        let password = passwordTextField.text
-        StudentInformationClient.shared.getStudentsLocation([:]) { (studentsLocations, error) in
-            print(studentsLocations?.description, error)
-        }
+        //let username = usernameTextField.text
+        //let password = passwordTextField.text
+        //StudentInformationClient.shared.getStudentsLocation([:]) { (studentsLocations, error) in
+        //   print(studentsLocations?.description, error)
+        //}
 //        AuthenticationClient.shared.authenticate(username: username!, password: password!) { (authentication, error) in
 //
 //        }
+        completeLogin()
+    }
+
+    private func completeLogin() {
+        let navigationTabController = UIStoryboard.init(name: "Main", bundle: nil)
+            .instantiateViewController(withIdentifier: "NavigationTabBarController")
+        present(navigationTabController, animated: true, completion: nil)
     }
 }
 
