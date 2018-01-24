@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct StudentLocation {
+struct StudentLocation: CustomStringConvertible {
     let objectId: String?
     let uniqueKey: String?
     let firstName: String?
@@ -19,6 +19,12 @@ struct StudentLocation {
     let longitude: Float?
     let createdAt: String?
     let updatedAt: String?
+
+    var description: String {
+        get {
+
+        }
+    }
 
     init(dictionary: [String: AnyObject]) {
         objectId = dictionary["objectId"] as? String
@@ -32,4 +38,5 @@ struct StudentLocation {
         createdAt = dictionary["createdAt"] as? String
         updatedAt = dictionary["updatedAt"] as? String
     }
+
 }

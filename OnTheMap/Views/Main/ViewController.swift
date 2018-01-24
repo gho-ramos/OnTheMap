@@ -28,10 +28,11 @@ class ViewController: UIViewController {
         let username = usernameTextField.text
         let password = passwordTextField.text
 
-//        AuthenticationClient.shared.authenticate(username: username!, password: password!) { (authentication, error) in
-//
-//        }
-        completeLogin()
+        AuthenticationClient.shared.authenticate(username: username!, password: password!) { (authentication, error) in
+            performUIUpdatesOnMain {
+                self.completeLogin()
+            }
+        }
     }
 
     private func completeLogin() {
@@ -50,7 +51,9 @@ extension ViewController: LoginButtonDelegate {
             print("canceled")
         case .success(grantedPermissions: _, declinedPermissions: _, token: let token):
             AuthenticationClient.shared.authenticate(with: token.authenticationToken) { (authentication, error) in
-
+                performUIUpdatesOnMain {
+                    self.completeLogin()
+                }
             }
         }
     }

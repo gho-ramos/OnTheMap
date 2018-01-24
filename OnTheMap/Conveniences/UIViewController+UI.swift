@@ -14,7 +14,6 @@ extension UIViewController {
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "LOGOUT", style: .plain, target: self, action: #selector(logout))
         navigationItem.title = "On the Map"
         configureRightButtons()
-
     }
 
     fileprivate func configureRightButtons() {

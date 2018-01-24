@@ -35,6 +35,7 @@
 		E6727F4420161848005735AF /* AuthenticationClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6727F4320161848005735AF /* AuthenticationClient.swift */; };
 		E6727F482016559C005735AF /* StudentLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6727F472016559C005735AF /* StudentLocation.swift */; };
 		E6727F4A20165D52005735AF /* StudentInformationClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6727F4920165D52005735AF /* StudentInformationClient.swift */; };
+		E6727FB12018A677005735AF /* GCDBlackBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6727FB02018A677005735AF /* GCDBlackBox.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -142,6 +143,7 @@
 		E6727F4320161848005735AF /* AuthenticationClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationClient.swift; sourceTree = "<group>"; };
 		E6727F472016559C005735AF /* StudentLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentLocation.swift; sourceTree = "<group>"; };
 		E6727F4920165D52005735AF /* StudentInformationClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentInformationClient.swift; sourceTree = "<group>"; };
+		E6727FB02018A677005735AF /* GCDBlackBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GCDBlackBox.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -317,6 +319,7 @@
 				5525D8C520158C5500100E37 /* RequestStatus.swift */,
 				E6727F4120160AA6005735AF /* Network.swift */,
 				5525D8D420183ACD00100E37 /* UIViewController+UI.swift */,
+				E6727FB02018A677005735AF /* GCDBlackBox.swift */,
 			);
 			path = Conveniences;
 			sourceTree = "<group>";
@@ -508,6 +511,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E6727FB12018A677005735AF /* GCDBlackBox.swift in Sources */,
 				5525D8E020183F0400100E37 /* StudentsListViewController.swift in Sources */,
 				E6727F4420161848005735AF /* AuthenticationClient.swift in Sources */,
 				E6727F482016559C005735AF /* StudentLocation.swift in Sources */,
