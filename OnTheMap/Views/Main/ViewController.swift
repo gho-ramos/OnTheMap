@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FacebookCore
 import FacebookLogin
 
 class ViewController: UIViewController {
@@ -17,44 +18,59 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        if let accessToken = AccessToken.current {
+            facebookLogin(with: accessToken.authenticationToken)
+        }
 
         let loginButton = LoginButton(readPermissions: [.publicProfile, .email])
+        loginButton.delegate = self
         rootStackView.addArrangedSubview(loginButton)
         passwordTextField.textContentType = .password
-
     }
 
     @IBAction func login(_ sender: Any?) {
         let username = usernameTextField.text
         let password = passwordTextField.text
-
-        AuthenticationClient.shared.authenticate(username: username!, password: password!) { (authentication, error) in
-            performUIUpdatesOnMain {
-                self.completeLogin()
-            }
-        }
+        Loader.show(on: self)
+        AuthenticationClient.shared.authenticate(username: username!, password: password!,
+        success: { (authentication) in
+            Loader.hide()
+            self.completeLogin()
+        }, failure: { error in
+            Loader.hide()
+            Dialog.show(message: error?.localizedDescription, title: "Error")
+        })
     }
 
     private func completeLogin() {
-        let navigationTabController = UIStoryboard.init(name: "Main", bundle: nil)
-            .instantiateViewController(withIdentifier: "NavigationTabBarController")
-        present(navigationTabController, animated: true, completion: nil)
+        performUIUpdatesOnMain {
+            let navigationTabController = UIStoryboard.init(name: "Main", bundle: nil)
+                .instantiateViewController(withIdentifier: "NavigationTabBarController")
+            self.present(navigationTabController, animated: true, completion: nil)
+        }
     }
 }
 
 extension ViewController: LoginButtonDelegate {
+    fileprivate func facebookLogin(with token: String) {
+        Loader.show(on: self)
+        AuthenticationClient.shared.authenticate(with: token, success: { _ in
+            Loader.hide()
+            self.completeLogin()
+        }, failure: { error in
+            Loader.hide()
+            Dialog.show(message: error?.localizedDescription, title: "Error")
+        })
+    }
     func loginButtonDidCompleteLogin(_ loginButton: LoginButton, result: LoginResult) {
         switch result {
         case .failed(let error):
+            Loader.hide()
             print("\(error)")
         case .cancelled:
             print("canceled")
         case .success(grantedPermissions: _, declinedPermissions: _, token: let token):
-            AuthenticationClient.shared.authenticate(with: token.authenticationToken) { (authentication, error) in
-                performUIUpdatesOnMain {
-                    self.completeLogin()
-                }
-            }
+            self.facebookLogin(with: token.authenticationToken)
         }
     }
 

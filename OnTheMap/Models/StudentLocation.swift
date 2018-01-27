@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct StudentLocation: CustomStringConvertible {
+struct StudentLocation: Codable {
     let objectId: String?
     let uniqueKey: String?
     let firstName: String?
@@ -20,23 +20,7 @@ struct StudentLocation: CustomStringConvertible {
     let createdAt: String?
     let updatedAt: String?
 
-    var description: String {
-        get {
-
-        }
+    func fullName() -> String {
+        return "\(firstName ?? "") \(lastName ?? "")"
     }
-
-    init(dictionary: [String: AnyObject]) {
-        objectId = dictionary["objectId"] as? String
-        uniqueKey = dictionary["uniqueKey"] as? String
-        firstName = dictionary["firstName"] as? String
-        lastName = dictionary["lastName"] as? String
-        mapString = dictionary["mapString"] as? String
-        mediaURL = dictionary["mediaURL"] as? String
-        latitude = dictionary["latitude"] as? Float
-        longitude = dictionary["longitude"] as? Float
-        createdAt = dictionary["createdAt"] as? String
-        updatedAt = dictionary["updatedAt"] as? String
-    }
-
 }

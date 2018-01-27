@@ -12,60 +12,48 @@ class AuthenticationClient: NSObject {
     static let shared = AuthenticationClient()
     private override init() { }
 
-    func logout(_ completion: @escaping ([String: AnyObject]?, Error?) -> Void) {
+    func logout(success: @escaping (Authentication?) -> Void, failure: @escaping (Error?) -> Void) {
         let request = NSMutableURLRequest(url: Network.buildUdacityURL(with: [:], Network.UdacityMethods.Session))
-        Network.shared.delete(request: request) { (result, error) in
+        let httpCookieStorage = HTTPCookieStorage.shared
+        var xsrfCookie: HTTPCookie? = nil
+        for cookie in httpCookieStorage.cookies! {
+            if Network.HeaderKeys.XsrfToken.range(of: cookie.name) != nil {
+                xsrfCookie = cookie
+            }
+        }
+        if let xsrfCookie = xsrfCookie {
+            request.setValue(xsrfCookie.value, forHTTPHeaderField: Network.HeaderKeys.XsrfToken)
+        }
+        Network.shared.delete(request: request, decoderType: Authentication.self) { (session, error) in
             if let error = error {
-                completion(nil, error)
+                failure(error)
             } else {
-                if let result = result as? [String: AnyObject] {
-                    completion(result, nil)
-                } else {
-                    let err = ErrorHandler.buildError(message: "Failed to logout",
-                                                      code: 2,
-                                                      err: error)
-                    completion(nil, err)
-                }
+                success(session)
             }
         }
     }
 
-    func authenticate(with token: String, _ completion: @escaping ((Authentication?, Error?) -> Void)) {
+    func authenticate(with token: String, success: @escaping ((Authentication?) -> Void), failure: @escaping ((Error?) -> Void)) {
         let request = NSMutableURLRequest(url: Network.buildUdacityURL(with: [:], Network.UdacityMethods.Session))
         let body = "{ \"facebook_mobile\": { \"access_token\": \"\(token)\" } }"
-        Network.shared.post(request: request, body: body) { (result, error) in
+        Network.shared.post(request: request, body: body, decoderType: Authentication.self) { (authentication, error) in
             if let error = error {
-                completion(nil, error)
+                failure(error)
             } else {
-                if let result = result as? [String: AnyObject] {
-                    completion(Authentication(dictionary: result), nil)
-                } else {
-                    let err = ErrorHandler.buildError(message: "Failed to parse Facebook result to Authentication",
-                                                      code: 2,
-                                                      err: error)
-                    completion(nil, err)
-                }
+                success(authentication)
             }
         }
     }
 
-    func authenticate(username: String, password: String, _ completion: @escaping ((Authentication?, Error?) -> Void)) {
+    func authenticate(username: String, password: String, success: @escaping ((Authentication?) -> Void), failure: @escaping ((Error?) -> Void)) {
         let request = NSMutableURLRequest(url: Network.buildUdacityURL(with: [:], Network.UdacityMethods.Session))
         let body = "{ \"udacity\": { \"username\": \"\(username)\", \"password\": \"\(password)\"} }"
-        Network.shared.post(request: request, body: body) { (result, error) in
+        Network.shared.post(request: request, body: body, decoderType: Authentication.self) { (authentication, error) in
             if let error = error {
-                completion(nil, error)
+                failure(error)
             } else {
-                if let result = result as? [String: AnyObject] {
-                    completion(Authentication(dictionary: result), nil)
-                } else {
-                    let err = ErrorHandler.buildError(message: "Failed to parse result to Authentication",
-                                                      code: 2,
-                                                      err: error)
-                    completion(nil, err)
-                }
+                success(authentication)
             }
-
         }
     }
 }

@@ -17,62 +17,74 @@ class Network: NSObject {
 
     typealias CompletionHandler = ((AnyObject?, Error?) -> Void)
 
-    func get(request: NSMutableURLRequest, completion: @escaping CompletionHandler) {
-        let task = taskHandler(request: request as URLRequest) { (result, error) in
-            completion(result, error)
+    func get<T: Decodable>(request: URLRequest, decoderType: T.Type, completion: @escaping ((T?, Error?) -> Void)) {
+        let task = handler(request: request) { (data, error) in
+            do {
+                let decoder = JSONDecoder()
+                let decoded = try decoder.decode(decoderType, from: data!)
+                completion(decoded, nil)
+            } catch let error {
+                completion(nil, error)
+            }
         }
-
-        task.resume()
-    }
-
-    func delete(request: NSMutableURLRequest, completion: @escaping CompletionHandler) {
-        request.httpMethod = "DELETE"
-        request.addValue("application/json", forHTTPHeaderField: "Accept")
-        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-
-        let task = taskHandler(request: request as URLRequest) { (result, error) in
-            completion(result, error)
-        }
-
         task.resume()
 
     }
 
-    func post(request: NSMutableURLRequest, body: String, completion: @escaping CompletionHandler) {
+    func post<T: Codable>(request: NSMutableURLRequest, body: String, decoderType: T.Type, completion: @escaping (T?, Error?) -> Void) {
         request.httpMethod = "POST"
         request.addValue("application/json", forHTTPHeaderField: "Accept")
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         request.httpBody = body.data(using: .utf8)
-
-        let task = taskHandler(request: request as URLRequest) { (result, error) in
-            completion(result, error)
+        let task = handler(request: request as URLRequest) { (data, error) in
+            if let data = data {
+                do {
+                    let decoder = JSONDecoder()
+                    let decoded = try decoder.decode(decoderType, from: data)
+                    completion(decoded, nil)
+                } catch let error {
+                    completion(nil, error)
+                }
+            } else {
+                completion(nil, error)
+            }
         }
-
         task.resume()
     }
 
-    func taskHandler(request: URLRequest, completionHandler completion: @escaping CompletionHandler) -> URLSessionDataTask {
-        let shouldExtractRange = request.url?.absoluteString.range(of: UdacityConstants.ApiHost) != nil
+    func delete<T: Codable>(request: NSMutableURLRequest, decoderType: T.Type, completion: @escaping (T?, Error?) -> Void) {
+        request.httpMethod = "DELETE"
+        let task = handler(request: request as URLRequest) { (data, error) in
+            do {
+                let decoder = JSONDecoder()
+                let decoded = try decoder.decode(decoderType, from: data!)
+                completion(decoded, nil)
+            } catch let error {
+                completion(nil, error)
+            }
+        }
+        task.resume()
+    }
+
+    private func handler(request: URLRequest, completion: @escaping ((Data?, Error?) -> Void)) -> URLSessionDataTask {
+        let isUdacity = request.url?.absoluteString.range(of: UdacityConstants.ApiHost) != nil
         let task = session.dataTask(with: request) { (data, response, error) in
             let status = ErrorHandler.checkStatus(data, response, error)
             if status.success {
-                var data = data
-                if shouldExtractRange {
-                    let range = Range(5..<data!.count)
-                    data = data?.subdata(in: range)
-                }
-                do {
-                    let result = try JSONSerialization.jsonObject(with: data!, options: .allowFragments)
-                    completion(result as AnyObject, nil)
-                } catch let error {
-                    let e = ErrorHandler.buildError(message: "Cannot convert data to JSON", code: 1, err: error)
-                    completion(nil, e)
-                }
+                completion(self.extract(from: data!, isUdacity), nil)
             } else {
                 completion(nil, status.error)
             }
         }
         return task
+    }
+
+    private func extract(from data: Data, _ isUdacity: Bool) -> Data? {
+        if isUdacity {
+            let range = Range(5..<data.count)
+            return data.subdata(in: range)
+        }
+        return data
     }
 
     private class func buildURL(forComponents components: URLComponents, with parameters: [String: AnyObject]) -> URL? {

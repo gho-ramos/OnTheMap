@@ -8,16 +8,7 @@
 
 import Foundation
 
-struct Session {
+struct Session: Codable {
     let id: String?
     let expiration: String?
-
-    enum Keys: String {
-        case id, expiration
-    }
-
-    init(dictionary: [String: AnyObject]) {
-        id = dictionary[Keys.id.rawValue] as? String
-        expiration = dictionary[Keys.expiration.rawValue] as? String
-    }
 }

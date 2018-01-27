@@ -35,6 +35,7 @@ extension Network {
     struct HeaderKeys {
         static let ParseApplicationID = "X-Parse-Application-Id"
         static let ParseRESTApiID = "X-Parse-REST-API-Key"
+        static let XsrfToken = "X-XSRF-TOKEN"
     }
 
     struct JSONResponseKeys {

@@ -8,16 +8,7 @@
 
 import Foundation
 
-struct Authentication {
+struct Authentication: Codable {
     let account: Account?
     let session: Session?
-
-    enum Keys: String {
-        case account, session
-    }
-
-    init(dictionary: [String: AnyObject]) {
-        account = dictionary[Keys.account.rawValue] as? Account
-        session = dictionary[Keys.session.rawValue] as? Session
-    }
 }
