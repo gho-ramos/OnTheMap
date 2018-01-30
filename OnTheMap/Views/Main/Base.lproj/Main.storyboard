@@ -82,6 +82,9 @@
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EgQ-pV-DI6">
                                                         <rect key="frame" x="187" y="0.0" width="55" height="30"/>
                                                         <state key="normal" title="Sign Up"/>
+                                                        <connections>
+                                                            <action selector="signUp:" destination="BYZ-38-t0r" eventType="touchUpInside" id="oEd-b1-l5r"/>
+                                                        </connections>
                                                     </button>
                                                 </subviews>
                                             </stackView>
@@ -115,6 +118,7 @@
                 <tabBarController storyboardIdentifier="NavigationTabBarController" automaticallyAdjustsScrollViewInsets="NO" id="hxj-5p-wrn" sceneMemberID="viewController">
                     <toolbarItems/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="qpQ-US-d9J">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>

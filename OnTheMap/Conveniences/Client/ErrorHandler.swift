@@ -32,13 +32,13 @@ class ErrorHandler: NSObject {
             let error = ErrorHandler.buildError(message: "There was an error with your request",
                                                 code: 0,
                                                 err: err)
-            return RequestStatus(success: false, error: error)
+            return RequestStatus(success: false, error: NetworkError.networkFailure(error))
         }
 
         guard data != nil else {
             let error = ErrorHandler.buildError(message: "No data was returned by the request",
                                                 code: 0,
-                                                err: err)
+                                                err: NetworkError.noResultsFound)
             return RequestStatus(success: false, error: error)
         }
         return RequestStatus(success: true, error: nil)

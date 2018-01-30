@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		321EF8298ED6551DA8DDBE8A /* Pods_OnTheMapTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 56BF9533BA7F8DFE20C57220 /* Pods_OnTheMapTests.framework */; };
+		492274161EDC74DEA5700318 /* Pods_OnTheMap.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 378A3C7A2E4B6220F9E2DAA3 /* Pods_OnTheMap.framework */; };
 		55052BCA201BFC210009F063 /* Students.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55052BC9201BFC210009F063 /* Students.swift */; };
 		55052BCE201C0A790009F063 /* Dialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55052BCD201C0A790009F063 /* Dialog.swift */; };
 		5525D8BC20156EC600100E37 /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5525D8BB20156EC600100E37 /* Account.swift */; };
@@ -14,7 +16,6 @@
 		5525D8C0201574A100100E37 /* Authentication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5525D8BF201574A100100E37 /* Authentication.swift */; };
 		5525D8C2201588B500100E37 /* ErrorHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5525D8C1201588B500100E37 /* ErrorHandler.swift */; };
 		5525D8C620158C5500100E37 /* RequestStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5525D8C520158C5500100E37 /* RequestStatus.swift */; };
-		5525D8D520183ACD00100E37 /* UIViewController+UI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5525D8D420183ACD00100E37 /* UIViewController+UI.swift */; };
 		5525D8D820183E3E00100E37 /* Map.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5525D8D620183E3E00100E37 /* Map.storyboard */; };
 		5525D8DB20183E6100100E37 /* List.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5525D8DA20183E6100100E37 /* List.storyboard */; };
 		5525D8DE20183EE000100E37 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5525D8DD20183EE000100E37 /* MapViewController.swift */; };
@@ -27,26 +28,16 @@
 		5556B6F3200EEF7800A3A88B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5556B6F1200EEF7800A3A88B /* LaunchScreen.storyboard */; };
 		5556B6FE200EEF7800A3A88B /* OnTheMapTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5556B6FD200EEF7800A3A88B /* OnTheMapTests.swift */; };
 		5556B709200EEF7800A3A88B /* OnTheMapUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5556B708200EEF7800A3A88B /* OnTheMapUITests.swift */; };
-		5556B750200EFB0600A3A88B /* FacebookCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5556B734200EF9F500A3A88B /* FacebookCore.framework */; };
-		5556B751200EFB0600A3A88B /* FacebookCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 5556B734200EF9F500A3A88B /* FacebookCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		5556B754200EFB0600A3A88B /* FacebookLogin.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5556B736200EF9F500A3A88B /* FacebookLogin.framework */; };
-		5556B755200EFB0600A3A88B /* FacebookLogin.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 5556B736200EF9F500A3A88B /* FacebookLogin.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		5556B758200EFB0600A3A88B /* FacebookShare.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5556B738200EF9F500A3A88B /* FacebookShare.framework */; };
-		5556B759200EFB0600A3A88B /* FacebookShare.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 5556B738200EF9F500A3A88B /* FacebookShare.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		5556B761200F02CA00A3A88B /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5556B760200F02CA00A3A88B /* Constants.swift */; };
-		559BC4EB201C43DC00C5B7FA /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 559BC4EA201C43DC00C5B7FA /* Bolts.framework */; };
-		559BC4EC201C43DC00C5B7FA /* Bolts.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 559BC4EA201C43DC00C5B7FA /* Bolts.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		559BC4EF201C441D00C5B7FA /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 559BC4EE201C441D00C5B7FA /* FBSDKCoreKit.framework */; };
-		559BC4F0201C441D00C5B7FA /* FBSDKCoreKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 559BC4EE201C441D00C5B7FA /* FBSDKCoreKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		559BC4F4201C446800C5B7FA /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 559BC4F3201C446800C5B7FA /* FBSDKLoginKit.framework */; };
-		559BC4F5201C446800C5B7FA /* FBSDKLoginKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 559BC4F3201C446800C5B7FA /* FBSDKLoginKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		559BC4F7201C448500C5B7FA /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 559BC4F6201C448500C5B7FA /* FBSDKShareKit.framework */; };
-		559BC4F8201C448500C5B7FA /* FBSDKShareKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 559BC4F6201C448500C5B7FA /* FBSDKShareKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		AA92FB8B2B2EE6F918499CC5 /* Pods_OnTheMapUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 094378AED0CDEEDD815162AB /* Pods_OnTheMapUITests.framework */; };
 		E6727F4220160AA6005735AF /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6727F4120160AA6005735AF /* Network.swift */; };
 		E6727F4420161848005735AF /* AuthenticationClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6727F4320161848005735AF /* AuthenticationClient.swift */; };
 		E6727F482016559C005735AF /* StudentLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6727F472016559C005735AF /* StudentLocation.swift */; };
 		E6727F4A20165D52005735AF /* StudentInformationClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6727F4920165D52005735AF /* StudentInformationClient.swift */; };
 		E6727FB12018A677005735AF /* GCDBlackBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6727FB02018A677005735AF /* GCDBlackBox.swift */; };
+		E6BE07FE2020D53300C07EF8 /* ParseConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6BE07FD2020D53300C07EF8 /* ParseConstants.swift */; };
+		E6BE08002020D5EF00C07EF8 /* UdacityConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6BE07FF2020D5EF00C07EF8 /* UdacityConstants.swift */; };
+		E6BE08082020F74800C07EF8 /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6BE08072020F74700C07EF8 /* UIViewController+Extension.swift */; };
+		E6BE080B202106E000C07EF8 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6BE080A202106E000C07EF8 /* NetworkError.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -64,48 +55,6 @@
 			remoteGlobalIDString = 5556B6E4200EEF7800A3A88B;
 			remoteInfo = OnTheMap;
 		};
-		5556B733200EF9F500A3A88B /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 5556B724200EF9F400A3A88B /* FacebookSwift.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 8115C0D81CFE540D001FF33B;
-			remoteInfo = FacebookCore;
-		};
-		5556B735200EF9F500A3A88B /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 5556B724200EF9F400A3A88B /* FacebookSwift.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 811C5DFD1CFFD36600E4A925;
-			remoteInfo = FacebookLogin;
-		};
-		5556B737200EF9F500A3A88B /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 5556B724200EF9F400A3A88B /* FacebookSwift.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 811C5E0A1CFFD36D00E4A925;
-			remoteInfo = FacebookShare;
-		};
-		5556B752200EFB0600A3A88B /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 5556B724200EF9F400A3A88B /* FacebookSwift.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 8115C0D71CFE540D001FF33B;
-			remoteInfo = FacebookCore;
-		};
-		5556B756200EFB0600A3A88B /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 5556B724200EF9F400A3A88B /* FacebookSwift.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 811C5DF21CFFD36600E4A925;
-			remoteInfo = FacebookLogin;
-		};
-		5556B75A200EFB0600A3A88B /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 5556B724200EF9F400A3A88B /* FacebookSwift.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 811C5DFF1CFFD36D00E4A925;
-			remoteInfo = FacebookShare;
-		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -115,13 +64,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				559BC4F0201C441D00C5B7FA /* FBSDKCoreKit.framework in Embed Frameworks */,
-				5556B759200EFB0600A3A88B /* FacebookShare.framework in Embed Frameworks */,
-				5556B755200EFB0600A3A88B /* FacebookLogin.framework in Embed Frameworks */,
-				559BC4F8201C448500C5B7FA /* FBSDKShareKit.framework in Embed Frameworks */,
-				559BC4F5201C446800C5B7FA /* FBSDKLoginKit.framework in Embed Frameworks */,
-				5556B751200EFB0600A3A88B /* FacebookCore.framework in Embed Frameworks */,
-				559BC4EC201C43DC00C5B7FA /* Bolts.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -129,6 +71,11 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		094378AED0CDEEDD815162AB /* Pods_OnTheMapUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OnTheMapUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		378A3C7A2E4B6220F9E2DAA3 /* Pods_OnTheMap.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OnTheMap.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		38F075E21FB0F47463A98517 /* Pods-OnTheMapUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OnTheMapUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-OnTheMapUITests/Pods-OnTheMapUITests.release.xcconfig"; sourceTree = "<group>"; };
+		41EC2AA49D172B1C9802F99B /* Pods-OnTheMapTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OnTheMapTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-OnTheMapTests/Pods-OnTheMapTests.debug.xcconfig"; sourceTree = "<group>"; };
+		48F374C94E4DAC7AFEF18CB2 /* Pods-OnTheMapTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OnTheMapTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-OnTheMapTests/Pods-OnTheMapTests.release.xcconfig"; sourceTree = "<group>"; };
 		55052BC9201BFC210009F063 /* Students.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Students.swift; sourceTree = "<group>"; };
 		55052BCD201C0A790009F063 /* Dialog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dialog.swift; sourceTree = "<group>"; };
 		5525D8BB20156EC600100E37 /* Account.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
@@ -136,7 +83,6 @@
 		5525D8BF201574A100100E37 /* Authentication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Authentication.swift; sourceTree = "<group>"; };
 		5525D8C1201588B500100E37 /* ErrorHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorHandler.swift; sourceTree = "<group>"; };
 		5525D8C520158C5500100E37 /* RequestStatus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestStatus.swift; sourceTree = "<group>"; };
-		5525D8D420183ACD00100E37 /* UIViewController+UI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+UI.swift"; sourceTree = "<group>"; };
 		5525D8D720183E3E00100E37 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = OnTheMap/Views/Main/Base.lproj/Map.storyboard; sourceTree = "<group>"; };
 		5525D8DA20183E6100100E37 /* List.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = List.storyboard; sourceTree = "<group>"; };
 		5525D8DD20183EE000100E37 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
@@ -155,17 +101,19 @@
 		5556B704200EEF7800A3A88B /* OnTheMapUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OnTheMapUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5556B708200EEF7800A3A88B /* OnTheMapUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnTheMapUITests.swift; sourceTree = "<group>"; };
 		5556B70A200EEF7800A3A88B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		5556B724200EF9F400A3A88B /* FacebookSwift.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = FacebookSwift.xcodeproj; path = "../facebook-sdk-swift/FacebookSwift.xcodeproj"; sourceTree = "<group>"; };
-		5556B760200F02CA00A3A88B /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
-		559BC4EA201C43DC00C5B7FA /* Bolts.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Bolts.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		559BC4EE201C441D00C5B7FA /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		559BC4F3201C446800C5B7FA /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		559BC4F6201C448500C5B7FA /* FBSDKShareKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FBSDKShareKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		56BF9533BA7F8DFE20C57220 /* Pods_OnTheMapTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OnTheMapTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		658515A2317A5E1DFEFFB3D6 /* Pods-OnTheMap.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OnTheMap.release.xcconfig"; path = "Pods/Target Support Files/Pods-OnTheMap/Pods-OnTheMap.release.xcconfig"; sourceTree = "<group>"; };
+		9B3EB798EC1AC6C4A5047296 /* Pods-OnTheMap.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OnTheMap.debug.xcconfig"; path = "Pods/Target Support Files/Pods-OnTheMap/Pods-OnTheMap.debug.xcconfig"; sourceTree = "<group>"; };
+		E3683145B456FBD96C96882D /* Pods-OnTheMapUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OnTheMapUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-OnTheMapUITests/Pods-OnTheMapUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		E6727F4120160AA6005735AF /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
 		E6727F4320161848005735AF /* AuthenticationClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationClient.swift; sourceTree = "<group>"; };
 		E6727F472016559C005735AF /* StudentLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentLocation.swift; sourceTree = "<group>"; };
 		E6727F4920165D52005735AF /* StudentInformationClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentInformationClient.swift; sourceTree = "<group>"; };
 		E6727FB02018A677005735AF /* GCDBlackBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GCDBlackBox.swift; sourceTree = "<group>"; };
+		E6BE07FD2020D53300C07EF8 /* ParseConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParseConstants.swift; sourceTree = "<group>"; };
+		E6BE07FF2020D5EF00C07EF8 /* UdacityConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UdacityConstants.swift; sourceTree = "<group>"; };
+		E6BE08072020F74700C07EF8 /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
+		E6BE080A202106E000C07EF8 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -173,13 +121,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				559BC4EF201C441D00C5B7FA /* FBSDKCoreKit.framework in Frameworks */,
-				5556B758200EFB0600A3A88B /* FacebookShare.framework in Frameworks */,
-				5556B754200EFB0600A3A88B /* FacebookLogin.framework in Frameworks */,
-				559BC4F7201C448500C5B7FA /* FBSDKShareKit.framework in Frameworks */,
-				559BC4F4201C446800C5B7FA /* FBSDKLoginKit.framework in Frameworks */,
-				5556B750200EFB0600A3A88B /* FacebookCore.framework in Frameworks */,
-				559BC4EB201C43DC00C5B7FA /* Bolts.framework in Frameworks */,
+				492274161EDC74DEA5700318 /* Pods_OnTheMap.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -187,6 +129,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				321EF8298ED6551DA8DDBE8A /* Pods_OnTheMapTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -194,12 +137,26 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AA92FB8B2B2EE6F918499CC5 /* Pods_OnTheMapUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		46E55CF8E3428F5CEA367111 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				9B3EB798EC1AC6C4A5047296 /* Pods-OnTheMap.debug.xcconfig */,
+				658515A2317A5E1DFEFFB3D6 /* Pods-OnTheMap.release.xcconfig */,
+				41EC2AA49D172B1C9802F99B /* Pods-OnTheMapTests.debug.xcconfig */,
+				48F374C94E4DAC7AFEF18CB2 /* Pods-OnTheMapTests.release.xcconfig */,
+				E3683145B456FBD96C96882D /* Pods-OnTheMapUITests.debug.xcconfig */,
+				38F075E21FB0F47463A98517 /* Pods-OnTheMapUITests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		5525D8D920183E4B00100E37 /* Map */ = {
 			isa = PBXGroup;
 			children = (
@@ -221,6 +178,9 @@
 		554024AE201C2963006ACA5D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				378A3C7A2E4B6220F9E2DAA3 /* Pods_OnTheMap.framework */,
+				56BF9533BA7F8DFE20C57220 /* Pods_OnTheMapTests.framework */,
+				094378AED0CDEEDD815162AB /* Pods_OnTheMapUITests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -228,10 +188,10 @@
 		554024C7201C3743006ACA5D /* UI */ = {
 			isa = PBXGroup;
 			children = (
-				5525D8D420183ACD00100E37 /* UIViewController+UI.swift */,
 				E6727FB02018A677005735AF /* GCDBlackBox.swift */,
 				55052BCD201C0A790009F063 /* Dialog.swift */,
 				554024AC201C11FC006ACA5D /* Loader.swift */,
+				E6BE08072020F74700C07EF8 /* UIViewController+Extension.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -239,10 +199,10 @@
 		554024C8201C3760006ACA5D /* Client */ = {
 			isa = PBXGroup;
 			children = (
-				5556B760200F02CA00A3A88B /* Constants.swift */,
 				5525D8C1201588B500100E37 /* ErrorHandler.swift */,
 				5525D8C520158C5500100E37 /* RequestStatus.swift */,
-				E6727F4120160AA6005735AF /* Network.swift */,
+				E6BE07FD2020D53300C07EF8 /* ParseConstants.swift */,
+				E6BE07FF2020D5EF00C07EF8 /* UdacityConstants.swift */,
 			);
 			path = Client;
 			sourceTree = "<group>";
@@ -250,16 +210,12 @@
 		5556B6DC200EEF7800A3A88B = {
 			isa = PBXGroup;
 			children = (
-				559BC4F6201C448500C5B7FA /* FBSDKShareKit.framework */,
-				559BC4F3201C446800C5B7FA /* FBSDKLoginKit.framework */,
-				559BC4EE201C441D00C5B7FA /* FBSDKCoreKit.framework */,
-				559BC4EA201C43DC00C5B7FA /* Bolts.framework */,
-				5556B724200EF9F400A3A88B /* FacebookSwift.xcodeproj */,
 				5556B6E7200EEF7800A3A88B /* OnTheMap */,
 				5556B6FC200EEF7800A3A88B /* OnTheMapTests */,
 				5556B707200EEF7800A3A88B /* OnTheMapUITests */,
 				5556B6E6200EEF7800A3A88B /* Products */,
 				554024AE201C2963006ACA5D /* Frameworks */,
+				46E55CF8E3428F5CEA367111 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -307,8 +263,9 @@
 		5556B716200EF5B600A3A88B /* Network */ = {
 			isa = PBXGroup;
 			children = (
-				E6727F4320161848005735AF /* AuthenticationClient.swift */,
-				E6727F4920165D52005735AF /* StudentInformationClient.swift */,
+				E6BE07F52020CE6300C07EF8 /* API */,
+				E6727F4120160AA6005735AF /* Network.swift */,
+				E6BE080A202106E000C07EF8 /* NetworkError.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -362,16 +319,6 @@
 			path = "Support Files";
 			sourceTree = "<group>";
 		};
-		5556B725200EF9F400A3A88B /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				5556B734200EF9F500A3A88B /* FacebookCore.framework */,
-				5556B736200EF9F500A3A88B /* FacebookLogin.framework */,
-				5556B738200EF9F500A3A88B /* FacebookShare.framework */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		5556B75D200F014500A3A88B /* Conveniences */ = {
 			isa = PBXGroup;
 			children = (
@@ -381,6 +328,15 @@
 			path = Conveniences;
 			sourceTree = "<group>";
 		};
+		E6BE07F52020CE6300C07EF8 /* API */ = {
+			isa = PBXGroup;
+			children = (
+				E6727F4320161848005735AF /* AuthenticationClient.swift */,
+				E6727F4920165D52005735AF /* StudentInformationClient.swift */,
+			);
+			path = API;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -388,18 +344,18 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 5556B70D200EEF7800A3A88B /* Build configuration list for PBXNativeTarget "OnTheMap" */;
 			buildPhases = (
+				FFE516FDC4F26E1049DDC3BA /* [CP] Check Pods Manifest.lock */,
 				5556B6E1200EEF7800A3A88B /* Sources */,
 				5556B6E2200EEF7800A3A88B /* Frameworks */,
 				5556B6E3200EEF7800A3A88B /* Resources */,
 				5556B75C200EFB0700A3A88B /* Embed Frameworks */,
 				5525D8AF201046E000100E37 /* ShellScript */,
+				320DBB5D38EB155E2F4E2006 /* [CP] Embed Pods Frameworks */,
+				1DFAF0760C132EA34A4923EC /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				5556B753200EFB0600A3A88B /* PBXTargetDependency */,
-				5556B757200EFB0600A3A88B /* PBXTargetDependency */,
-				5556B75B200EFB0600A3A88B /* PBXTargetDependency */,
 			);
 			name = OnTheMap;
 			productName = OnTheMap;
@@ -410,9 +366,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 5556B710200EEF7800A3A88B /* Build configuration list for PBXNativeTarget "OnTheMapTests" */;
 			buildPhases = (
+				A727766FCD99697C256FD954 /* [CP] Check Pods Manifest.lock */,
 				5556B6F5200EEF7800A3A88B /* Sources */,
 				5556B6F6200EEF7800A3A88B /* Frameworks */,
 				5556B6F7200EEF7800A3A88B /* Resources */,
+				81C569F9C2E803C82300598A /* [CP] Embed Pods Frameworks */,
+				BD285935E97EB1C901A45BC1 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -428,9 +387,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 5556B713200EEF7800A3A88B /* Build configuration list for PBXNativeTarget "OnTheMapUITests" */;
 			buildPhases = (
+				85290DF1136B181B78F52807 /* [CP] Check Pods Manifest.lock */,
 				5556B700200EEF7800A3A88B /* Sources */,
 				5556B701200EEF7800A3A88B /* Frameworks */,
 				5556B702200EEF7800A3A88B /* Resources */,
+				A82209D570A5862AE48FC5DD /* [CP] Embed Pods Frameworks */,
+				22711E4E0A6BE83EA3658F3D /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -479,12 +441,6 @@
 			mainGroup = 5556B6DC200EEF7800A3A88B;
 			productRefGroup = 5556B6E6200EEF7800A3A88B /* Products */;
 			projectDirPath = "";
-			projectReferences = (
-				{
-					ProductGroup = 5556B725200EF9F400A3A88B /* Products */;
-					ProjectRef = 5556B724200EF9F400A3A88B /* FacebookSwift.xcodeproj */;
-				},
-			);
 			projectRoot = "";
 			targets = (
 				5556B6E4200EEF7800A3A88B /* OnTheMap */,
@@ -493,30 +449,6 @@
 			);
 		};
 /* End PBXProject section */
-
-/* Begin PBXReferenceProxy section */
-		5556B734200EF9F500A3A88B /* FacebookCore.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = FacebookCore.framework;
-			remoteRef = 5556B733200EF9F500A3A88B /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		5556B736200EF9F500A3A88B /* FacebookLogin.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = FacebookLogin.framework;
-			remoteRef = 5556B735200EF9F500A3A88B /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		5556B738200EF9F500A3A88B /* FacebookShare.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = FacebookShare.framework;
-			remoteRef = 5556B737200EF9F500A3A88B /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		5556B6E3200EEF7800A3A88B /* Resources */ = {
@@ -548,6 +480,66 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		1DFAF0760C132EA34A4923EC /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-OnTheMap/Pods-OnTheMap-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		22711E4E0A6BE83EA3658F3D /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-OnTheMapUITests/Pods-OnTheMapUITests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		320DBB5D38EB155E2F4E2006 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-OnTheMap/Pods-OnTheMap-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Bolts/Bolts.framework",
+				"${BUILT_PRODUCTS_DIR}/FBSDKCoreKit/FBSDKCoreKit.framework",
+				"${BUILT_PRODUCTS_DIR}/FBSDKLoginKit/FBSDKLoginKit.framework",
+				"${BUILT_PRODUCTS_DIR}/FBSDKShareKit/FBSDKShareKit.framework",
+				"${BUILT_PRODUCTS_DIR}/FacebookCore/FacebookCore.framework",
+				"${BUILT_PRODUCTS_DIR}/FacebookLogin/FacebookLogin.framework",
+				"${BUILT_PRODUCTS_DIR}/FacebookShare/FacebookShare.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Bolts.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKCoreKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKLoginKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKShareKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FacebookCore.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FacebookLogin.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FacebookShare.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-OnTheMap/Pods-OnTheMap-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		5525D8AF201046E000100E37 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -561,6 +553,105 @@
 			shellPath = /bin/sh;
 			shellScript = "if which swiftlint >/dev/null; then\nswiftlint\nelse\necho \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi";
 		};
+		81C569F9C2E803C82300598A /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-OnTheMapTests/Pods-OnTheMapTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		85290DF1136B181B78F52807 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-OnTheMapUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A727766FCD99697C256FD954 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-OnTheMapTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A82209D570A5862AE48FC5DD /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-OnTheMapUITests/Pods-OnTheMapUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		BD285935E97EB1C901A45BC1 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-OnTheMapTests/Pods-OnTheMapTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		FFE516FDC4F26E1049DDC3BA /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-OnTheMap-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -571,20 +662,22 @@
 				55052BCA201BFC210009F063 /* Students.swift in Sources */,
 				E6727FB12018A677005735AF /* GCDBlackBox.swift in Sources */,
 				5525D8E020183F0400100E37 /* StudentsListViewController.swift in Sources */,
+				E6BE07FE2020D53300C07EF8 /* ParseConstants.swift in Sources */,
 				55052BCE201C0A790009F063 /* Dialog.swift in Sources */,
 				E6727F4420161848005735AF /* AuthenticationClient.swift in Sources */,
 				E6727F482016559C005735AF /* StudentLocation.swift in Sources */,
 				5525D8BE20156ED000100E37 /* Session.swift in Sources */,
+				E6BE08002020D5EF00C07EF8 /* UdacityConstants.swift in Sources */,
 				554024AD201C11FC006ACA5D /* Loader.swift in Sources */,
 				5556B6EB200EEF7800A3A88B /* ViewController.swift in Sources */,
 				5556B6E9200EEF7800A3A88B /* AppDelegate.swift in Sources */,
 				5525D8C620158C5500100E37 /* RequestStatus.swift in Sources */,
-				5525D8D520183ACD00100E37 /* UIViewController+UI.swift in Sources */,
 				5525D8BC20156EC600100E37 /* Account.swift in Sources */,
 				E6727F4220160AA6005735AF /* Network.swift in Sources */,
-				5556B761200F02CA00A3A88B /* Constants.swift in Sources */,
+				E6BE080B202106E000C07EF8 /* NetworkError.swift in Sources */,
 				E6727F4A20165D52005735AF /* StudentInformationClient.swift in Sources */,
 				5525D8C2201588B500100E37 /* ErrorHandler.swift in Sources */,
+				E6BE08082020F74800C07EF8 /* UIViewController+Extension.swift in Sources */,
 				5525D8C0201574A100100E37 /* Authentication.swift in Sources */,
 				5525D8DE20183EE000100E37 /* MapViewController.swift in Sources */,
 			);
@@ -618,21 +711,6 @@
 			isa = PBXTargetDependency;
 			target = 5556B6E4200EEF7800A3A88B /* OnTheMap */;
 			targetProxy = 5556B705200EEF7800A3A88B /* PBXContainerItemProxy */;
-		};
-		5556B753200EFB0600A3A88B /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = FacebookCore;
-			targetProxy = 5556B752200EFB0600A3A88B /* PBXContainerItemProxy */;
-		};
-		5556B757200EFB0600A3A88B /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = FacebookLogin;
-			targetProxy = 5556B756200EFB0600A3A88B /* PBXContainerItemProxy */;
-		};
-		5556B75B200EFB0600A3A88B /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = FacebookShare;
-			targetProxy = 5556B75A200EFB0600A3A88B /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -773,8 +851,9 @@
 		};
 		5556B70E200EEF7800A3A88B /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9B3EB798EC1AC6C4A5047296 /* Pods-OnTheMap.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = S5EZY468C5;
@@ -793,8 +872,9 @@
 		};
 		5556B70F200EEF7800A3A88B /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 658515A2317A5E1DFEFFB3D6 /* Pods-OnTheMap.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = S5EZY468C5;
@@ -813,6 +893,7 @@
 		};
 		5556B711200EEF7800A3A88B /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 41EC2AA49D172B1C9802F99B /* Pods-OnTheMapTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -830,6 +911,7 @@
 		};
 		5556B712200EEF7800A3A88B /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 48F374C94E4DAC7AFEF18CB2 /* Pods-OnTheMapTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -847,6 +929,7 @@
 		};
 		5556B714200EEF7800A3A88B /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E3683145B456FBD96C96882D /* Pods-OnTheMapUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -863,6 +946,7 @@
 		};
 		5556B715200EEF7800A3A88B /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 38F075E21FB0F47463A98517 /* Pods-OnTheMapUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;

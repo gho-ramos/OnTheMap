@@ -32,14 +32,19 @@ class ViewController: UIViewController {
         let username = usernameTextField.text
         let password = passwordTextField.text
         Loader.show(on: self)
-        AuthenticationClient.shared.authenticate(username: username!, password: password!,
-        success: { (authentication) in
+
+        AuthenticationClient.shared.login(username: username!, password: password!,
+        success: { (_) in
             Loader.hide()
             self.completeLogin()
         }, failure: { error in
             Loader.hide()
             Dialog.show(message: error?.localizedDescription, title: "Error")
         })
+    }
+
+    @IBAction func signUp(_ sender: Any) {
+        open(url: "https://www.udacity.com/account/auth#!/signup")
     }
 
     private func completeLogin() {
@@ -52,9 +57,10 @@ class ViewController: UIViewController {
 }
 
 extension ViewController: LoginButtonDelegate {
+
     fileprivate func facebookLogin(with token: String) {
         Loader.show(on: self)
-        AuthenticationClient.shared.authenticate(with: token, success: { _ in
+        AuthenticationClient.shared.login(with: token, success: { _ in
             Loader.hide()
             self.completeLogin()
         }, failure: { error in
@@ -62,6 +68,7 @@ extension ViewController: LoginButtonDelegate {
             Dialog.show(message: error?.localizedDescription, title: "Error")
         })
     }
+
     func loginButtonDidCompleteLogin(_ loginButton: LoginButton, result: LoginResult) {
         switch result {
         case .failed(let error):
@@ -74,7 +81,5 @@ extension ViewController: LoginButtonDelegate {
         }
     }
 
-    func loginButtonDidLogOut(_ loginButton: LoginButton) {
-
-    }
+    func loginButtonDidLogOut(_ loginButton: LoginButton) {}
 }

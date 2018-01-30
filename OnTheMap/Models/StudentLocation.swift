@@ -6,7 +6,7 @@
 //  Copyright © 2018 Progeekt. All rights reserved.
 //
 
-import Foundation
+import MapKit
 
 struct StudentLocation: Codable {
     let objectId: String?
@@ -22,5 +22,18 @@ struct StudentLocation: Codable {
 
     func fullName() -> String {
         return "\(firstName ?? "") \(lastName ?? "")"
+    }
+
+    func studentAnnotationPoint() -> MKPointAnnotation? {
+        guard let latitude = latitude, let longitude = longitude else { return nil }
+
+        let coordinate = CLLocationCoordinate2D(latitude: Double(latitude), longitude: Double(longitude))
+
+        let annotation = MKPointAnnotation()
+        annotation.coordinate = coordinate
+        annotation.title = fullName()
+        annotation.subtitle = mediaURL
+
+        return annotation
     }
 }

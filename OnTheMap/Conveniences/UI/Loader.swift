@@ -10,14 +10,31 @@ import UIKit
 
 class Loader: NSObject {
     static var loaderView: UIView?
-    class func show(on viewController: UIViewController) {
-        let loadingImage = UIImageView(image: #imageLiteral(resourceName: "loading"))
 
-        loaderView = UIView(frame: viewController.view.frame)
-        loaderView?.backgroundColor = UIColor(red: 0.5, green: 0.5, blue: 0.5, alpha: 0.2)
-        loaderView?.addSubview(loadingImage)
-        loadingImage.center = (loaderView?.center)!
+    private class func buildLoadingView(with frame: CGRect) -> UIView {
+        let center = CGPoint(x: frame.midX, y: frame.midY)
+
+        let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .whiteLarge)
+        activityIndicator.frame = CGRect(x: 0, y: 0, width: 66, height: 66)
+        activityIndicator.center = center
+        activityIndicator.startAnimating()
+
+        return activityIndicator
+    }
+
+    private class func buildOverlay(with frame: CGRect, dimBackground: Bool) -> UIView {
+        let overlay = UIView(frame: frame)
+        let loaderView = buildLoadingView(with: frame)
+        overlay.addSubview(loaderView)
+        if dimBackground {
+            overlay.backgroundColor = UIColor(red: 0.3, green: 0.3, blue: 0.3, alpha: 0.3)
+        }
+        return overlay
+    }
+
+    class func show(on viewController: UIViewController) {
         performUIUpdatesOnMain {
+            loaderView = buildOverlay(with: viewController.view.frame, dimBackground: true)
             viewController.view.addSubview(loaderView!)
         }
     }
