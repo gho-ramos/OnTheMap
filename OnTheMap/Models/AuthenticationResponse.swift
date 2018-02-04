@@ -1,5 +1,5 @@
 //
-//  Authentication.swift
+//  AuthenticationResponse.swift
 //  OnTheMap
 //
 //  Created by Guilherme Ramos on 21/01/2018.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct Authentication: Codable {
+struct AuthenticationResponse: Codable {
     let account: Account?
     let session: Session?
 }

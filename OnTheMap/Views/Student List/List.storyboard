@@ -66,7 +66,18 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="b0j-wZ-We1"/>
                     </view>
-                    <navigationItem key="navigationItem" id="fVl-WZ-lAQ"/>
+                    <navigationItem key="navigationItem" id="fVl-WZ-lAQ">
+                        <barButtonItem key="leftBarButtonItem" title="LOGOUT" style="done" id="tTv-JA-mtY">
+                            <connections>
+                                <action selector="logout:" destination="jva-tH-M0o" id="TWX-uS-wk4"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" image="icon_addpin" id="MSW-zk-lHo">
+                            <connections>
+                                <action selector="presentAddLocationViewController:" destination="jva-tH-M0o" id="IFX-fQ-94k"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="KD8-Xk-HQ1" id="tMI-Su-yYd"/>
                     </connections>
@@ -96,6 +107,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="icon_addpin" width="24" height="24"/>
         <image name="icon_listview-deselected" width="75" height="50"/>
         <image name="icon_listview-selected" width="75" height="50"/>
         <image name="icon_pin" width="24" height="24"/>

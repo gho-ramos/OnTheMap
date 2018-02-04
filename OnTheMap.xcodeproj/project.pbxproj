@@ -13,7 +13,7 @@
 		55052BCE201C0A790009F063 /* Dialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55052BCD201C0A790009F063 /* Dialog.swift */; };
 		5525D8BC20156EC600100E37 /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5525D8BB20156EC600100E37 /* Account.swift */; };
 		5525D8BE20156ED000100E37 /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5525D8BD20156ED000100E37 /* Session.swift */; };
-		5525D8C0201574A100100E37 /* Authentication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5525D8BF201574A100100E37 /* Authentication.swift */; };
+		5525D8C0201574A100100E37 /* AuthenticationResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5525D8BF201574A100100E37 /* AuthenticationResponse.swift */; };
 		5525D8C2201588B500100E37 /* ErrorHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5525D8C1201588B500100E37 /* ErrorHandler.swift */; };
 		5525D8C620158C5500100E37 /* RequestStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5525D8C520158C5500100E37 /* RequestStatus.swift */; };
 		5525D8D820183E3E00100E37 /* Map.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5525D8D620183E3E00100E37 /* Map.storyboard */; };
@@ -28,6 +28,14 @@
 		5556B6F3200EEF7800A3A88B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5556B6F1200EEF7800A3A88B /* LaunchScreen.storyboard */; };
 		5556B6FE200EEF7800A3A88B /* OnTheMapTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5556B6FD200EEF7800A3A88B /* OnTheMapTests.swift */; };
 		5556B709200EEF7800A3A88B /* OnTheMapUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5556B708200EEF7800A3A88B /* OnTheMapUITests.swift */; };
+		55BE981C20266FC6008DA955 /* PostAuthentication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55BE981B20266FC6008DA955 /* PostAuthentication.swift */; };
+		55BE981E20266FD3008DA955 /* FacebookAuthentication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55BE981D20266FD3008DA955 /* FacebookAuthentication.swift */; };
+		55BE982020266FDD008DA955 /* UdacityAuthentication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55BE981F20266FDD008DA955 /* UdacityAuthentication.swift */; };
+		55BE9825202675F6008DA955 /* New.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 55BE9824202675F6008DA955 /* New.storyboard */; };
+		55BE982920267FB8008DA955 /* AddLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55BE982820267FB7008DA955 /* AddLocationViewController.swift */; };
+		55BE982B20269AD9008DA955 /* AddLocationMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55BE982A20269AD9008DA955 /* AddLocationMapViewController.swift */; };
+		55BE982D2026AB72008DA955 /* MapViewControllerDelegateHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55BE982C2026AB72008DA955 /* MapViewControllerDelegateHandler.swift */; };
+		55BE982F2026AC93008DA955 /* UIApplication+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55BE982E2026AC93008DA955 /* UIApplication+Extension.swift */; };
 		AA92FB8B2B2EE6F918499CC5 /* Pods_OnTheMapUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 094378AED0CDEEDD815162AB /* Pods_OnTheMapUITests.framework */; };
 		E6727F4220160AA6005735AF /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6727F4120160AA6005735AF /* Network.swift */; };
 		E6727F4420161848005735AF /* AuthenticationClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6727F4320161848005735AF /* AuthenticationClient.swift */; };
@@ -80,7 +88,7 @@
 		55052BCD201C0A790009F063 /* Dialog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dialog.swift; sourceTree = "<group>"; };
 		5525D8BB20156EC600100E37 /* Account.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
 		5525D8BD20156ED000100E37 /* Session.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
-		5525D8BF201574A100100E37 /* Authentication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Authentication.swift; sourceTree = "<group>"; };
+		5525D8BF201574A100100E37 /* AuthenticationResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationResponse.swift; sourceTree = "<group>"; };
 		5525D8C1201588B500100E37 /* ErrorHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorHandler.swift; sourceTree = "<group>"; };
 		5525D8C520158C5500100E37 /* RequestStatus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestStatus.swift; sourceTree = "<group>"; };
 		5525D8D720183E3E00100E37 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = OnTheMap/Views/Main/Base.lproj/Map.storyboard; sourceTree = "<group>"; };
@@ -101,6 +109,14 @@
 		5556B704200EEF7800A3A88B /* OnTheMapUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OnTheMapUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5556B708200EEF7800A3A88B /* OnTheMapUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnTheMapUITests.swift; sourceTree = "<group>"; };
 		5556B70A200EEF7800A3A88B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		55BE981B20266FC6008DA955 /* PostAuthentication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostAuthentication.swift; sourceTree = "<group>"; };
+		55BE981D20266FD3008DA955 /* FacebookAuthentication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacebookAuthentication.swift; sourceTree = "<group>"; };
+		55BE981F20266FDD008DA955 /* UdacityAuthentication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UdacityAuthentication.swift; sourceTree = "<group>"; };
+		55BE9824202675F6008DA955 /* New.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = New.storyboard; sourceTree = "<group>"; };
+		55BE982820267FB7008DA955 /* AddLocationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddLocationViewController.swift; sourceTree = "<group>"; };
+		55BE982A20269AD9008DA955 /* AddLocationMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddLocationMapViewController.swift; sourceTree = "<group>"; };
+		55BE982C2026AB72008DA955 /* MapViewControllerDelegateHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewControllerDelegateHandler.swift; sourceTree = "<group>"; };
+		55BE982E2026AC93008DA955 /* UIApplication+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication+Extension.swift"; sourceTree = "<group>"; };
 		56BF9533BA7F8DFE20C57220 /* Pods_OnTheMapTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OnTheMapTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		658515A2317A5E1DFEFFB3D6 /* Pods-OnTheMap.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OnTheMap.release.xcconfig"; path = "Pods/Target Support Files/Pods-OnTheMap/Pods-OnTheMap.release.xcconfig"; sourceTree = "<group>"; };
 		9B3EB798EC1AC6C4A5047296 /* Pods-OnTheMap.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OnTheMap.debug.xcconfig"; path = "Pods/Target Support Files/Pods-OnTheMap/Pods-OnTheMap.debug.xcconfig"; sourceTree = "<group>"; };
@@ -192,6 +208,8 @@
 				55052BCD201C0A790009F063 /* Dialog.swift */,
 				554024AC201C11FC006ACA5D /* Loader.swift */,
 				E6BE08072020F74700C07EF8 /* UIViewController+Extension.swift */,
+				55BE982C2026AB72008DA955 /* MapViewControllerDelegateHandler.swift */,
+				55BE982E2026AC93008DA955 /* UIApplication+Extension.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -275,9 +293,12 @@
 			children = (
 				5525D8BB20156EC600100E37 /* Account.swift */,
 				5525D8BD20156ED000100E37 /* Session.swift */,
-				5525D8BF201574A100100E37 /* Authentication.swift */,
+				5525D8BF201574A100100E37 /* AuthenticationResponse.swift */,
 				E6727F472016559C005735AF /* StudentLocation.swift */,
 				55052BC9201BFC210009F063 /* Students.swift */,
+				55BE981B20266FC6008DA955 /* PostAuthentication.swift */,
+				55BE981D20266FD3008DA955 /* FacebookAuthentication.swift */,
+				55BE981F20266FDD008DA955 /* UdacityAuthentication.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -285,6 +306,7 @@
 		5556B718200EF5D100A3A88B /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				55BE9821202675BC008DA955 /* New Student */,
 				5525D8DC20183E6600100E37 /* Student List */,
 				5525D8D920183E4B00100E37 /* Map */,
 				5556B719200EF5E600A3A88B /* Main */,
@@ -326,6 +348,16 @@
 				554024C7201C3743006ACA5D /* UI */,
 			);
 			path = Conveniences;
+			sourceTree = "<group>";
+		};
+		55BE9821202675BC008DA955 /* New Student */ = {
+			isa = PBXGroup;
+			children = (
+				55BE9824202675F6008DA955 /* New.storyboard */,
+				55BE982820267FB7008DA955 /* AddLocationViewController.swift */,
+				55BE982A20269AD9008DA955 /* AddLocationMapViewController.swift */,
+			);
+			path = "New Student";
 			sourceTree = "<group>";
 		};
 		E6BE07F52020CE6300C07EF8 /* API */ = {
@@ -458,6 +490,7 @@
 				5556B6F3200EEF7800A3A88B /* LaunchScreen.storyboard in Resources */,
 				5556B6F0200EEF7800A3A88B /* Assets.xcassets in Resources */,
 				5525D8DB20183E6100100E37 /* List.storyboard in Resources */,
+				55BE9825202675F6008DA955 /* New.storyboard in Resources */,
 				5556B6EE200EEF7800A3A88B /* Main.storyboard in Resources */,
 				5525D8D820183E3E00100E37 /* Map.storyboard in Resources */,
 			);
@@ -660,25 +693,32 @@
 			buildActionMask = 2147483647;
 			files = (
 				55052BCA201BFC210009F063 /* Students.swift in Sources */,
+				55BE982020266FDD008DA955 /* UdacityAuthentication.swift in Sources */,
 				E6727FB12018A677005735AF /* GCDBlackBox.swift in Sources */,
 				5525D8E020183F0400100E37 /* StudentsListViewController.swift in Sources */,
+				55BE982920267FB8008DA955 /* AddLocationViewController.swift in Sources */,
 				E6BE07FE2020D53300C07EF8 /* ParseConstants.swift in Sources */,
+				55BE982F2026AC93008DA955 /* UIApplication+Extension.swift in Sources */,
 				55052BCE201C0A790009F063 /* Dialog.swift in Sources */,
 				E6727F4420161848005735AF /* AuthenticationClient.swift in Sources */,
+				55BE982B20269AD9008DA955 /* AddLocationMapViewController.swift in Sources */,
 				E6727F482016559C005735AF /* StudentLocation.swift in Sources */,
 				5525D8BE20156ED000100E37 /* Session.swift in Sources */,
+				55BE982D2026AB72008DA955 /* MapViewControllerDelegateHandler.swift in Sources */,
 				E6BE08002020D5EF00C07EF8 /* UdacityConstants.swift in Sources */,
 				554024AD201C11FC006ACA5D /* Loader.swift in Sources */,
 				5556B6EB200EEF7800A3A88B /* ViewController.swift in Sources */,
 				5556B6E9200EEF7800A3A88B /* AppDelegate.swift in Sources */,
 				5525D8C620158C5500100E37 /* RequestStatus.swift in Sources */,
+				55BE981E20266FD3008DA955 /* FacebookAuthentication.swift in Sources */,
 				5525D8BC20156EC600100E37 /* Account.swift in Sources */,
 				E6727F4220160AA6005735AF /* Network.swift in Sources */,
 				E6BE080B202106E000C07EF8 /* NetworkError.swift in Sources */,
 				E6727F4A20165D52005735AF /* StudentInformationClient.swift in Sources */,
+				55BE981C20266FC6008DA955 /* PostAuthentication.swift in Sources */,
 				5525D8C2201588B500100E37 /* ErrorHandler.swift in Sources */,
 				E6BE08082020F74800C07EF8 /* UIViewController+Extension.swift in Sources */,
-				5525D8C0201574A100100E37 /* Authentication.swift in Sources */,
+				5525D8C0201574A100100E37 /* AuthenticationResponse.swift in Sources */,
 				5525D8DE20183EE000100E37 /* MapViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

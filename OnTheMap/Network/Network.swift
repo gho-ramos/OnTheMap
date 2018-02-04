@@ -28,11 +28,16 @@ class Network: NSObject {
 
     }
 
-    func post<T: Codable>(request: NSMutableURLRequest, body: String, decoderType: T.Type, completion: @escaping (T?, Error?) -> Void) {
+    func post<T: Codable, J: Encodable>(request: NSMutableURLRequest, body: J, decoderType: T.Type, completion: @escaping (T?, Error?) -> Void) {
         request.httpMethod = "POST"
         request.addValue("application/json", forHTTPHeaderField: "Accept")
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-        request.httpBody = body.data(using: .utf8)
+        do {
+            request.httpBody = try encode(body)
+        } catch let error {
+            completion(nil, error)
+            return
+        }
         let task = handler(request: request as URLRequest) { (data, error) in
             if let data = data {
                 do {
@@ -61,6 +66,16 @@ class Network: NSObject {
             }
         }
         task.resume()
+    }
+
+    private func encode<T: Encodable>(_ object: T) throws -> Data {
+        do {
+            let encoder = JSONEncoder()
+            let encoded = try encoder.encode(object)
+            return encoded
+        } catch let error {
+            throw NetworkError.encodeFailure(error)
+        }
     }
 
     private func handler(request: URLRequest, completion: @escaping ((Data?, Error?) -> Void)) -> URLSessionDataTask {

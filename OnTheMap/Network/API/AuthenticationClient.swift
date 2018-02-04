@@ -12,7 +12,7 @@ class AuthenticationClient: NSObject {
     static let shared = AuthenticationClient()
     private override init() { }
 
-    func logout(success: @escaping (Authentication?) -> Void, failure: @escaping (Error?) -> Void) {
+    func logout(success: @escaping (AuthenticationResponse?) -> Void, failure: @escaping (Error?) -> Void) {
         let request = NSMutableURLRequest(url: udacityURL(with: [:], for: Methods.Session))
         let httpCookieStorage = HTTPCookieStorage.shared
         var xsrfCookie: HTTPCookie? = nil
@@ -24,7 +24,7 @@ class AuthenticationClient: NSObject {
         if let xsrfCookie = xsrfCookie {
             request.setValue(xsrfCookie.value, forHTTPHeaderField: Headers.XsrfToken)
         }
-        Network.shared.delete(request: request, decoderType: Authentication.self) { (session, error) in
+        Network.shared.delete(request: request, decoderType: AuthenticationResponse.self) { (session, error) in
             if let error = error {
                 failure(error)
             } else {
@@ -33,10 +33,11 @@ class AuthenticationClient: NSObject {
         }
     }
 
-    func login(with token: String, success: @escaping ((Authentication?) -> Void), failure: @escaping ((Error?) -> Void)) {
+    func login(with facebook: FacebookAuthentication, success: @escaping ((AuthenticationResponse?) -> Void), failure: @escaping ((Error?) -> Void)) {
         let request = NSMutableURLRequest(url: udacityURL(with: [:], for: Methods.Session))
-        let body = "{ \"facebook_mobile\": { \"access_token\": \"\(token)\" } }"
-        Network.shared.post(request: request, body: body, decoderType: Authentication.self) { (authentication, error) in
+        let body = PostAuthentication(facebook: facebook, udacity: nil)
+        Network.shared.post(request: request, body: body,
+                            decoderType: AuthenticationResponse.self) { (authentication, error) in
             if let error = error {
                 failure(error)
             } else {
@@ -45,10 +46,11 @@ class AuthenticationClient: NSObject {
         }
     }
 
-    func login(username: String, password: String, success: @escaping ((Authentication?) -> Void), failure: @escaping ((Error?) -> Void)) {
+    func login(with udacityUser: UdacityAuthentication, success: @escaping ((AuthenticationResponse?) -> Void), failure: @escaping ((Error?) -> Void)) {
         let request = NSMutableURLRequest(url: udacityURL(with: [:], for: Methods.Session))
-        let body = "{ \"udacity\": { \"username\": \"\(username)\", \"password\": \"\(password)\"} }"
-        Network.shared.post(request: request, body: body, decoderType: Authentication.self) { (authentication, error) in
+        let body = PostAuthentication(facebook: nil, udacity: udacityUser)
+        Network.shared.post(request: request, body: body,
+                            decoderType: AuthenticationResponse.self) { (authentication, error) in
             if let error = error {
                 failure(error)
             } else {

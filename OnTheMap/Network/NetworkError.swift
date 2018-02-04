@@ -9,6 +9,7 @@
 import Foundation
 
 enum NetworkError: Error {
+    case encodeFailure(Error)
     case decodeFailure(Error)
     case networkFailure(Error)
     case noResultsFound

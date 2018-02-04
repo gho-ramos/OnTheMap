@@ -31,20 +31,23 @@ extension UIViewController {
         UIApplication.shared.open(url)
     }
 
-    // MARK: Logout config
-
-    func configureLogoutButton() {
-        let logoutButton = UIBarButtonItem(title: "LOGOUT", style: .done, target: self, action: #selector(logout))
-        navigationItem.leftBarButtonItem = logoutButton
+    // MARK: Bar button actions
+    @IBAction func presentAddLocationViewController(_ sender: Any?) {
+        if let navController = UIStoryboard(name: "New", bundle: nil)
+            .instantiateInitialViewController() {
+            present(navController, animated: true, completion: nil)
+        }
     }
 
-    @objc func logout() {
+    @IBAction func logout(_ sender: Any?) {
         Dialog.show(message: "Do you really wish to logout from the application?", title: "Wait!") {
+            Loader.show(on: self)
             AuthenticationClient.shared.logout(success: { (_) in
-                if AccessToken.current != nil {
-                    LoginManager().logOut()
-                }
+                Loader.hide()
                 performUIUpdatesOnMain {
+                    if AccessToken.current != nil {
+                        LoginManager().logOut()
+                    }
                     self.dismiss(animated: true, completion: nil)
                 }
             }, failure: { (error) in

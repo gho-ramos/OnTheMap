@@ -13,10 +13,6 @@ class StudentsListViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
 
-    class func instance() -> Self {
-        return instance(from: "List", identifier: String(describing: self.self))
-    }
-
     override func viewDidLoad() {
         super.viewDidLoad()
         loadStudents(shouldForceReload: true)
@@ -24,14 +20,8 @@ class StudentsListViewController: UIViewController {
     }
 
     func configureUI() {
-        configureLogoutButton()
-        configureUIButtons()
-    }
-
-    func configureUIButtons() {
         let refreshButton = UIBarButtonItem(image: #imageLiteral(resourceName: "icon_refresh"), style: .plain, target: self, action: #selector(reloadStudents))
-        let addButton = UIBarButtonItem(image: #imageLiteral(resourceName: "icon_addpin"), style: .plain, target: self, action: nil)
-        navigationItem.rightBarButtonItems = [addButton, refreshButton]
+        navigationItem.rightBarButtonItems?.append(refreshButton)
     }
 
     @objc func reloadStudents() {
@@ -41,14 +31,15 @@ class StudentsListViewController: UIViewController {
     func loadStudents(shouldForceReload: Bool = true) {
         Loader.show(on: self)
         if shouldForceReload {
-            StudentInformationClient.shared.getStudents(with: [:], success: { _ in
+            let parameters = ["order": "-updatedAt"]
+            StudentInformationClient.shared.getStudents(with: parameters as [String: AnyObject], success: { _ in
                 Loader.hide()
                 performUIUpdatesOnMain {
                     self.tableView.reloadData()
                 }
             }, failure: { error in
                 Loader.hide()
-                Dialog.show(message: error?.localizedDescription, title: "Failed to fetch students")
+                Dialog.show(message: error?.localizedDescription, title: "Failed to download the list of students")
             })
         } else {
             Loader.hide()
@@ -66,17 +57,23 @@ class StudentsListViewController: UIViewController {
 
 extension StudentsListViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if let count = StudentInformationClient.shared.all?.count {
-            return count
-        }
-        return 0
+        return StudentInformationClient.shared.all.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier)
-        if let student = StudentInformationClient.shared.all?[indexPath.row] {
-            configure(cell: cell, student: student)
-        }
+        let student = StudentInformationClient.shared.all[indexPath.row]
+
+        configure(cell: cell, student: student)
+
         return cell!
+    }
+}
+
+extension StudentsListViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let student = StudentInformationClient.shared.all[indexPath.row]
+
+        UIApplication.shared.open(url: student.mediaURL)
     }
 }
