@@ -32,18 +32,34 @@ class ViewController: UIViewController {
         if let username = usernameTextField.text, let password = passwordTextField.text {
             Loader.show(on: self)
             let user = UdacityAuthentication(username: username, password: password)
-            AuthenticationClient.shared.login(with: user, success: { (_) in
-                    Loader.hide()
-                    self.completeLogin()
+            AuthenticationClient.shared.login(with: user, success: { authentication in
+                self.completeLogin(for: authentication)
             }, failure: { error in
                 Loader.hide()
-                Dialog.show(message: error?.localizedDescription, title: "Error")
+                Dialog.show(error: error)
             })
         }
     }
 
     @IBAction func signUp(_ sender: Any) {
         open(url: "https://www.udacity.com/account/auth#!/signup")
+    }
+
+    private func completeLogin(for authentication: AuthenticationResponse?) {
+        if let auth = authentication, let acc = auth.account, let key = acc.key {
+            AuthenticationClient.shared.getUserInformation(for: key, success: { response in
+                Loader.hide()
+                SessionManager.shared.user = response?.user
+                self.completeLogin()
+            }, failure: { error in
+                Loader.hide()
+                Dialog.show(error: error)
+            })
+        } else {
+            Loader.hide()
+            Dialog.show(message: "Sorry, we were not able to complete the authentication, try again later.",
+                        title: "Login Failed")
+        }
     }
 
     private func completeLogin() {
@@ -60,12 +76,11 @@ extension ViewController: LoginButtonDelegate {
     fileprivate func facebookLogin(with token: String) {
         Loader.show(on: self)
         let facebookAuthentication = FacebookAuthentication(token: token)
-        AuthenticationClient.shared.login(with: facebookAuthentication, success: { _ in
-            Loader.hide()
-            self.completeLogin()
+        AuthenticationClient.shared.login(with: facebookAuthentication, success: { authentication in
+            self.completeLogin(for: authentication)
         }, failure: { error in
             Loader.hide()
-            Dialog.show(message: error?.localizedDescription, title: "Error")
+            Dialog.show(error: error)
         })
     }
 

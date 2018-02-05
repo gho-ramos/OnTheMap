@@ -16,6 +16,10 @@ extension AuthenticationClient {
         static let ApiPath = "/api"
     }
 
+    struct Keys {
+        static let UserID = "userid"
+    }
+
     struct Headers {
         static let XsrfToken = "X-XSRF-TOKEN"
     }

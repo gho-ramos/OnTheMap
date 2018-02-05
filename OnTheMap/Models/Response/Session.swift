@@ -9,6 +9,11 @@
 import Foundation
 
 struct Session: Codable {
-    let id: String?
+    let identifier: String?
     let expiration: String?
+
+    enum CodingKeys: String, CodingKey {
+        case identifier = "id"
+        case expiration
+    }
 }

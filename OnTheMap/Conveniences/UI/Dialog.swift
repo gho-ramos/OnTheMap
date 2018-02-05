@@ -68,4 +68,8 @@ class Dialog: NSObject {
         }
     }
 
+    class func show(error: Error?) {
+        self.show(message: error?.localizedDescription, title: "Error")
+    }
+
 }

@@ -59,6 +59,19 @@ class AuthenticationClient: NSObject {
         }
     }
 
+    func getUserInformation(for accountKey: String, success: @escaping ((Response?) -> Void), failure: @escaping ((Error?) -> Void)) {
+        let request = NSMutableURLRequest(url:
+            udacityURL(with: [:], for: Methods.UsersUserID.replace(key: Keys.UserID, to: accountKey))
+        )
+        Network.shared.get(request: request as URLRequest, decoderType: Response.self) { (response, error) in
+            if let error = error {
+                failure(error)
+            } else {
+                success(response)
+            }
+        }
+    }
+
     private func udacityURL(with parameters: [String: AnyObject], for pathExtension: String? = nil) -> URL {
         var components = URLComponents()
         components.scheme = Constants.ApiScheme

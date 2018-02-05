@@ -56,6 +56,8 @@ class AddLocationViewController: UIViewController {
             let addLocationMapViewController = segue.destination as? AddLocationMapViewController {
             if let mapItem = (sender as? [MKMapItem])?.first {
                 addLocationMapViewController.mapItem = mapItem
+                addLocationMapViewController.mapString = locationTextField.text
+                addLocationMapViewController.mediaURL = urlTextField.text
             }
         }
     }

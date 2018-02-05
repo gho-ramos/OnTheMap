@@ -12,22 +12,13 @@ class StudentInformationClient: NSObject {
     static let shared = StudentInformationClient()
     var all = [StudentLocation]()
 
-    lazy var baseParseURL: URLComponents = self.makeBaseParseURL()
-    private func makeBaseParseURL() -> URLComponents {
-        var components = URLComponents()
-        components.scheme = Constants.ApiScheme
-        components.host = Constants.ApiHost
-        components.path = Constants.ApiPath
-
-        return components
-    }
-
     private override init() {}
 
     fileprivate func baseParseRequest(with parameters: [String: AnyObject]) -> NSMutableURLRequest {
         let request = NSMutableURLRequest(url: parseURL(with: parameters))
         request.addValue(Constants.ApiKey, forHTTPHeaderField: Headers.ParseRESTApiID)
         request.addValue(Constants.AppKey, forHTTPHeaderField: Headers.ParseApplicationID)
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         return request
     }
 
@@ -45,9 +36,15 @@ class StudentInformationClient: NSObject {
         }
     }
 
-    func saveStudent(_ student: StudentLocation, success: @escaping (StudentLocation) -> Void, failure: @escaping (Error?) -> Void) {
+    func saveStudent(_ student: StudentLocation, success: @escaping (StudentLocation?) -> Void, failure: @escaping (Error?) -> Void) {
         let request = baseParseRequest(with: [:])
-
+        Network.shared.post(request: request, body: student, decoderType: StudentLocation.self) { (student, error) in
+            if error != nil {
+                failure(error)
+            } else {
+                success(student)
+            }
+        }
     }
 
     private func parseURL(with parameters: [String: AnyObject], for pathExtension: String? = nil) -> URL {

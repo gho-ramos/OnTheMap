@@ -37,6 +37,9 @@
 		55BE982D2026AB72008DA955 /* MapViewControllerDelegateHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55BE982C2026AB72008DA955 /* MapViewControllerDelegateHandler.swift */; };
 		55BE982F2026AC93008DA955 /* UIApplication+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55BE982E2026AC93008DA955 /* UIApplication+Extension.swift */; };
 		AA92FB8B2B2EE6F918499CC5 /* Pods_OnTheMapUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 094378AED0CDEEDD815162AB /* Pods_OnTheMapUITests.framework */; };
+		E654ECAC202893A200787DD6 /* Response.swift in Sources */ = {isa = PBXBuildFile; fileRef = E654ECAB202893A200787DD6 /* Response.swift */; };
+		E654ECAE202898E900787DD6 /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E654ECAD202898E900787DD6 /* String+Extension.swift */; };
+		E654ECB32028C35800787DD6 /* SessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E654ECB22028C35800787DD6 /* SessionManager.swift */; };
 		E6727F4220160AA6005735AF /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6727F4120160AA6005735AF /* Network.swift */; };
 		E6727F4420161848005735AF /* AuthenticationClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6727F4320161848005735AF /* AuthenticationClient.swift */; };
 		E6727F482016559C005735AF /* StudentLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6727F472016559C005735AF /* StudentLocation.swift */; };
@@ -121,6 +124,9 @@
 		658515A2317A5E1DFEFFB3D6 /* Pods-OnTheMap.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OnTheMap.release.xcconfig"; path = "Pods/Target Support Files/Pods-OnTheMap/Pods-OnTheMap.release.xcconfig"; sourceTree = "<group>"; };
 		9B3EB798EC1AC6C4A5047296 /* Pods-OnTheMap.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OnTheMap.debug.xcconfig"; path = "Pods/Target Support Files/Pods-OnTheMap/Pods-OnTheMap.debug.xcconfig"; sourceTree = "<group>"; };
 		E3683145B456FBD96C96882D /* Pods-OnTheMapUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OnTheMapUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-OnTheMapUITests/Pods-OnTheMapUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		E654ECAB202893A200787DD6 /* Response.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Response.swift; sourceTree = "<group>"; };
+		E654ECAD202898E900787DD6 /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
+		E654ECB22028C35800787DD6 /* SessionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionManager.swift; sourceTree = "<group>"; };
 		E6727F4120160AA6005735AF /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
 		E6727F4320161848005735AF /* AuthenticationClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationClient.swift; sourceTree = "<group>"; };
 		E6727F472016559C005735AF /* StudentLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentLocation.swift; sourceTree = "<group>"; };
@@ -228,12 +234,12 @@
 		5556B6DC200EEF7800A3A88B = {
 			isa = PBXGroup;
 			children = (
+				554024AE201C2963006ACA5D /* Frameworks */,
 				5556B6E7200EEF7800A3A88B /* OnTheMap */,
 				5556B6FC200EEF7800A3A88B /* OnTheMapTests */,
 				5556B707200EEF7800A3A88B /* OnTheMapUITests */,
-				5556B6E6200EEF7800A3A88B /* Products */,
-				554024AE201C2963006ACA5D /* Frameworks */,
 				46E55CF8E3428F5CEA367111 /* Pods */,
+				5556B6E6200EEF7800A3A88B /* Products */,
 			);
 			sourceTree = "<group>";
 		};
@@ -250,6 +256,7 @@
 		5556B6E7200EEF7800A3A88B /* OnTheMap */ = {
 			isa = PBXGroup;
 			children = (
+				E654ECB12028C34600787DD6 /* Managers */,
 				5556B75D200F014500A3A88B /* Conveniences */,
 				5556B71B200EF61C00A3A88B /* Support Files */,
 				5556B718200EF5D100A3A88B /* Views */,
@@ -281,9 +288,9 @@
 		5556B716200EF5B600A3A88B /* Network */ = {
 			isa = PBXGroup;
 			children = (
-				E6BE07F52020CE6300C07EF8 /* API */,
 				E6727F4120160AA6005735AF /* Network.swift */,
 				E6BE080A202106E000C07EF8 /* NetworkError.swift */,
+				E6BE07F52020CE6300C07EF8 /* API */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -291,14 +298,8 @@
 		5556B717200EF5BF00A3A88B /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				5525D8BB20156EC600100E37 /* Account.swift */,
-				5525D8BD20156ED000100E37 /* Session.swift */,
-				5525D8BF201574A100100E37 /* AuthenticationResponse.swift */,
-				E6727F472016559C005735AF /* StudentLocation.swift */,
-				55052BC9201BFC210009F063 /* Students.swift */,
-				55BE981B20266FC6008DA955 /* PostAuthentication.swift */,
-				55BE981D20266FD3008DA955 /* FacebookAuthentication.swift */,
-				55BE981F20266FDD008DA955 /* UdacityAuthentication.swift */,
+				E654ECAF2028C1F200787DD6 /* Request */,
+				E654ECB02028C24A00787DD6 /* Response */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -346,6 +347,7 @@
 			children = (
 				554024C8201C3760006ACA5D /* Client */,
 				554024C7201C3743006ACA5D /* UI */,
+				E654ECAD202898E900787DD6 /* String+Extension.swift */,
 			);
 			path = Conveniences;
 			sourceTree = "<group>";
@@ -358,6 +360,37 @@
 				55BE982A20269AD9008DA955 /* AddLocationMapViewController.swift */,
 			);
 			path = "New Student";
+			sourceTree = "<group>";
+		};
+		E654ECAF2028C1F200787DD6 /* Request */ = {
+			isa = PBXGroup;
+			children = (
+				55BE981B20266FC6008DA955 /* PostAuthentication.swift */,
+				55BE981D20266FD3008DA955 /* FacebookAuthentication.swift */,
+				55BE981F20266FDD008DA955 /* UdacityAuthentication.swift */,
+			);
+			path = Request;
+			sourceTree = "<group>";
+		};
+		E654ECB02028C24A00787DD6 /* Response */ = {
+			isa = PBXGroup;
+			children = (
+				5525D8BB20156EC600100E37 /* Account.swift */,
+				5525D8BD20156ED000100E37 /* Session.swift */,
+				5525D8BF201574A100100E37 /* AuthenticationResponse.swift */,
+				E6727F472016559C005735AF /* StudentLocation.swift */,
+				55052BC9201BFC210009F063 /* Students.swift */,
+				E654ECAB202893A200787DD6 /* Response.swift */,
+			);
+			path = Response;
+			sourceTree = "<group>";
+		};
+		E654ECB12028C34600787DD6 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				E654ECB22028C35800787DD6 /* SessionManager.swift */,
+			);
+			path = Managers;
 			sourceTree = "<group>";
 		};
 		E6BE07F52020CE6300C07EF8 /* API */ = {
@@ -711,6 +744,8 @@
 				5556B6E9200EEF7800A3A88B /* AppDelegate.swift in Sources */,
 				5525D8C620158C5500100E37 /* RequestStatus.swift in Sources */,
 				55BE981E20266FD3008DA955 /* FacebookAuthentication.swift in Sources */,
+				E654ECAC202893A200787DD6 /* Response.swift in Sources */,
+				E654ECB32028C35800787DD6 /* SessionManager.swift in Sources */,
 				5525D8BC20156EC600100E37 /* Account.swift in Sources */,
 				E6727F4220160AA6005735AF /* Network.swift in Sources */,
 				E6BE080B202106E000C07EF8 /* NetworkError.swift in Sources */,
@@ -719,6 +754,7 @@
 				5525D8C2201588B500100E37 /* ErrorHandler.swift in Sources */,
 				E6BE08082020F74800C07EF8 /* UIViewController+Extension.swift in Sources */,
 				5525D8C0201574A100100E37 /* AuthenticationResponse.swift in Sources */,
+				E654ECAE202898E900787DD6 /* String+Extension.swift in Sources */,
 				5525D8DE20183EE000100E37 /* MapViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

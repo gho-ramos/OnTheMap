@@ -45,12 +45,14 @@ extension UIViewController {
             AuthenticationClient.shared.logout(success: { (_) in
                 Loader.hide()
                 performUIUpdatesOnMain {
+                    SessionManager.shared.user = nil
                     if AccessToken.current != nil {
                         LoginManager().logOut()
                     }
                     self.dismiss(animated: true, completion: nil)
                 }
             }, failure: { (error) in
+                Loader.hide()
                 Dialog.show(message: error?.localizedDescription, title: "Failed to close session")
             })
         }
