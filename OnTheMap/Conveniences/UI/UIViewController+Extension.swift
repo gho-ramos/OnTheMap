@@ -12,10 +12,24 @@ import FacebookLogin
 
 extension UIViewController {
 
+    /// Generic instance method for the viewController
+    ///
+    /// - Parameters:
+    ///   - storyboardName: Desired viewController's storyboard name
+    ///   - identifier: ViewController's identifier
+    /// - Returns: The viewController with the specified identifier
     class func instance(from storyboardName: String, identifier: String) -> Self {
         return genericStoryboardInstance(with: storyboardName, identifier: identifier)!
     }
 
+
+    /// Get a generic viewController (type defined on execution) with an identifier
+    /// from a named storyboard
+    ///
+    /// - Parameters:
+    ///   - name: Name of the storyboard
+    ///   - identifier: ViewController's identifier
+    /// - Returns: Generic viewController (independent of the type)
     private class func genericStoryboardInstance<T>(with name: String, identifier: String) -> T? {
         let storyboard = UIStoryboard.init(name: name, bundle: nil)
         let controller = storyboard.instantiateViewController(
@@ -24,14 +38,18 @@ extension UIViewController {
         return controller as? T
     }
 
-    func open(url: String) {
-        guard let url = URL(string: url) else {
-            return
-        }
-        UIApplication.shared.open(url)
+    /// Extend the open url from the uiapplication's extension to use it seamlessly on a viewController
+    ///
+    /// - Parameter url: String of the desired url
+    func open(url: String?) {
+        UIApplication.shared.open(url: url)
     }
 
     // MARK: Bar button actions
+
+    /// Present the "Add Location" View Controller
+    ///
+    /// - Parameter sender: Any
     @IBAction func presentAddLocationViewController(_ sender: Any?) {
         if let navController = UIStoryboard(name: "New", bundle: nil)
             .instantiateInitialViewController() {
@@ -39,6 +57,11 @@ extension UIViewController {
         }
     }
 
+
+    /// Prompts the user if him/her really wants to exit the application
+    /// if positive, it removes the user's session
+    ///
+    /// - Parameter sender: Any
     @IBAction func logout(_ sender: Any?) {
         Dialog.show(message: "Do you really wish to logout from the application?", title: "Wait!") {
             Loader.show(on: self)

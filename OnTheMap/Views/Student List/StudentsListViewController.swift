@@ -74,6 +74,6 @@ extension StudentsListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let student = StudentInformationClient.shared.all[indexPath.row]
 
-        UIApplication.shared.open(url: student.mediaURL)
+        open(url: student.mediaURL)
     }
 }

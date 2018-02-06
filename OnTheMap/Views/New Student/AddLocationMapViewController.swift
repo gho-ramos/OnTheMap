@@ -51,7 +51,7 @@ class AddLocationMapViewController: UIViewController {
                                               mapString: mapString, mediaURL: mediaURL,
                                               latitude: coordinate.latitude, longitude: coordinate.longitude,
                                               createdAt: nil, updatedAt: nil)
-        
+
         Loader.show(on: self)
         StudentInformationClient.shared.saveStudent(studentLocation, success: { student in
             Loader.hide()

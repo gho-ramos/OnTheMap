@@ -11,6 +11,9 @@ import MapKit
 class MapViewControllerDelegateHandler: NSObject, MKMapViewDelegate {
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         let pinIdentifier = "pin"
+
+        /// Check if a annotation view on this map for the identifier
+        /// if the pin doesn't exist, create a new PinAnnotationView
         guard let pin = mapView.dequeueReusableAnnotationView(withIdentifier: pinIdentifier)
             as? MKPinAnnotationView else {
 
@@ -21,12 +24,15 @@ class MapViewControllerDelegateHandler: NSObject, MKMapViewDelegate {
 
                 return pin
         }
+        /// otherwise, just add an annotation
 
         pin.annotation = annotation
+
         return pin
     }
 
     func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
+        /// Check the annotation's subtitle and try to open it as an url
         guard let url = view.annotation?.subtitle as? String else {
             return
         }

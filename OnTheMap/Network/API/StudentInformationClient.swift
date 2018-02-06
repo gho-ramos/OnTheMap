@@ -18,13 +18,12 @@ class StudentInformationClient: NSObject {
         let request = NSMutableURLRequest(url: parseURL(with: parameters))
         request.addValue(Constants.ApiKey, forHTTPHeaderField: Headers.ParseRESTApiID)
         request.addValue(Constants.AppKey, forHTTPHeaderField: Headers.ParseApplicationID)
-        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         return request
     }
 
     func getStudents(with parameters: [String: AnyObject], success: @escaping ([StudentLocation]?) -> Void, failure: @escaping (Error?) -> Void) {
         let request = baseParseRequest(with: parameters)
-        Network.shared.get(request: request as URLRequest, decoderType: Students.self) { (students, error) in
+        NetworkClient().get(request: request as URLRequest, decoder: Students.self) { (students, error) in
             if error != nil {
                 failure(error)
             } else {
@@ -38,7 +37,18 @@ class StudentInformationClient: NSObject {
 
     func saveStudent(_ student: StudentLocation, success: @escaping (StudentLocation?) -> Void, failure: @escaping (Error?) -> Void) {
         let request = baseParseRequest(with: [:])
-        Network.shared.post(request: request, body: student, decoderType: StudentLocation.self) { (student, error) in
+        let body = """
+            {
+                \"uniqueKey\": \"\(student.uniqueKey ?? "")\",
+                \"firstName\": \"\(student.firstName ?? "")\",
+                \"lastName\": \"\(student.lastName ?? "")\",
+                \"mapString\": \"\(student.mapString ?? "")\",
+                \"mediaURL\": \"\(student.mediaURL ?? "")\",
+                \"latitude\": \(student.latitude ?? 0.0),
+                \"longitude\": \(student.longitude ?? 0.0)
+            }
+            """
+        NetworkClient().post(request: request, body: body, decoder: StudentLocation.self) { (student, error) in
             if error != nil {
                 failure(error)
             } else {
@@ -53,6 +63,6 @@ class StudentInformationClient: NSObject {
         components.host = Constants.ApiHost
         components.path = Constants.ApiPath + (pathExtension ?? "")
 
-        return Network.buildURL(forComponents: components, with: parameters)!
+        return NetworkClient.buildURL(forComponents: components, with: parameters)!
     }
 }

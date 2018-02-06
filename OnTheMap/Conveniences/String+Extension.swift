@@ -9,6 +9,13 @@
 import Foundation
 
 extension String {
+
+    /// Replace the specified key to a certain value
+    ///
+    /// - Parameters:
+    ///   - key: Key to be replaced by a value
+    ///   - value: New value of the string
+    /// - Returns: String with the replaced value
     func replace(key: String, to value: String) -> String? {
         let key = "#\(key)"
         if self.range(of: key) != nil {

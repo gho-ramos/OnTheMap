@@ -40,7 +40,6 @@
 		E654ECAC202893A200787DD6 /* Response.swift in Sources */ = {isa = PBXBuildFile; fileRef = E654ECAB202893A200787DD6 /* Response.swift */; };
 		E654ECAE202898E900787DD6 /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E654ECAD202898E900787DD6 /* String+Extension.swift */; };
 		E654ECB32028C35800787DD6 /* SessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E654ECB22028C35800787DD6 /* SessionManager.swift */; };
-		E6727F4220160AA6005735AF /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6727F4120160AA6005735AF /* Network.swift */; };
 		E6727F4420161848005735AF /* AuthenticationClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6727F4320161848005735AF /* AuthenticationClient.swift */; };
 		E6727F482016559C005735AF /* StudentLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6727F472016559C005735AF /* StudentLocation.swift */; };
 		E6727F4A20165D52005735AF /* StudentInformationClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6727F4920165D52005735AF /* StudentInformationClient.swift */; };
@@ -49,6 +48,10 @@
 		E6BE08002020D5EF00C07EF8 /* UdacityConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6BE07FF2020D5EF00C07EF8 /* UdacityConstants.swift */; };
 		E6BE08082020F74800C07EF8 /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6BE08072020F74700C07EF8 /* UIViewController+Extension.swift */; };
 		E6BE080B202106E000C07EF8 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6BE080A202106E000C07EF8 /* NetworkError.swift */; };
+		E6DA3E05202A0E88006D1339 /* NetworkProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6DA3E04202A0E88006D1339 /* NetworkProtocol.swift */; };
+		E6DA3E07202A0EAB006D1339 /* NetworkClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6DA3E06202A0EAB006D1339 /* NetworkClient.swift */; };
+		E6DA3E10202A1542006D1339 /* MockURLSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6DA3E0F202A1542006D1339 /* MockURLSession.swift */; };
+		E6DA3E12202A185E006D1339 /* MockURLSessionDataTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6DA3E11202A185E006D1339 /* MockURLSessionDataTask.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -127,7 +130,6 @@
 		E654ECAB202893A200787DD6 /* Response.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Response.swift; sourceTree = "<group>"; };
 		E654ECAD202898E900787DD6 /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
 		E654ECB22028C35800787DD6 /* SessionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionManager.swift; sourceTree = "<group>"; };
-		E6727F4120160AA6005735AF /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
 		E6727F4320161848005735AF /* AuthenticationClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationClient.swift; sourceTree = "<group>"; };
 		E6727F472016559C005735AF /* StudentLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentLocation.swift; sourceTree = "<group>"; };
 		E6727F4920165D52005735AF /* StudentInformationClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentInformationClient.swift; sourceTree = "<group>"; };
@@ -136,6 +138,10 @@
 		E6BE07FF2020D5EF00C07EF8 /* UdacityConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UdacityConstants.swift; sourceTree = "<group>"; };
 		E6BE08072020F74700C07EF8 /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
 		E6BE080A202106E000C07EF8 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
+		E6DA3E04202A0E88006D1339 /* NetworkProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkProtocol.swift; sourceTree = "<group>"; };
+		E6DA3E06202A0EAB006D1339 /* NetworkClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkClient.swift; sourceTree = "<group>"; };
+		E6DA3E0F202A1542006D1339 /* MockURLSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockURLSession.swift; sourceTree = "<group>"; };
+		E6DA3E11202A185E006D1339 /* MockURLSessionDataTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockURLSessionDataTask.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -270,6 +276,7 @@
 		5556B6FC200EEF7800A3A88B /* OnTheMapTests */ = {
 			isa = PBXGroup;
 			children = (
+				E6DA3E0E202A1536006D1339 /* Mocks */,
 				5556B6FD200EEF7800A3A88B /* OnTheMapTests.swift */,
 				5556B6FF200EEF7800A3A88B /* Info.plist */,
 			);
@@ -288,7 +295,8 @@
 		5556B716200EF5B600A3A88B /* Network */ = {
 			isa = PBXGroup;
 			children = (
-				E6727F4120160AA6005735AF /* Network.swift */,
+				E6DA3E04202A0E88006D1339 /* NetworkProtocol.swift */,
+				E6DA3E06202A0EAB006D1339 /* NetworkClient.swift */,
 				E6BE080A202106E000C07EF8 /* NetworkError.swift */,
 				E6BE07F52020CE6300C07EF8 /* API */,
 			);
@@ -400,6 +408,15 @@
 				E6727F4920165D52005735AF /* StudentInformationClient.swift */,
 			);
 			path = API;
+			sourceTree = "<group>";
+		};
+		E6DA3E0E202A1536006D1339 /* Mocks */ = {
+			isa = PBXGroup;
+			children = (
+				E6DA3E0F202A1542006D1339 /* MockURLSession.swift */,
+				E6DA3E11202A185E006D1339 /* MockURLSessionDataTask.swift */,
+			);
+			path = Mocks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -737,7 +754,9 @@
 				55BE982B20269AD9008DA955 /* AddLocationMapViewController.swift in Sources */,
 				E6727F482016559C005735AF /* StudentLocation.swift in Sources */,
 				5525D8BE20156ED000100E37 /* Session.swift in Sources */,
+				E6DA3E05202A0E88006D1339 /* NetworkProtocol.swift in Sources */,
 				55BE982D2026AB72008DA955 /* MapViewControllerDelegateHandler.swift in Sources */,
+				E6DA3E07202A0EAB006D1339 /* NetworkClient.swift in Sources */,
 				E6BE08002020D5EF00C07EF8 /* UdacityConstants.swift in Sources */,
 				554024AD201C11FC006ACA5D /* Loader.swift in Sources */,
 				5556B6EB200EEF7800A3A88B /* ViewController.swift in Sources */,
@@ -747,7 +766,6 @@
 				E654ECAC202893A200787DD6 /* Response.swift in Sources */,
 				E654ECB32028C35800787DD6 /* SessionManager.swift in Sources */,
 				5525D8BC20156EC600100E37 /* Account.swift in Sources */,
-				E6727F4220160AA6005735AF /* Network.swift in Sources */,
 				E6BE080B202106E000C07EF8 /* NetworkError.swift in Sources */,
 				E6727F4A20165D52005735AF /* StudentInformationClient.swift in Sources */,
 				55BE981C20266FC6008DA955 /* PostAuthentication.swift in Sources */,
@@ -763,6 +781,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E6DA3E12202A185E006D1339 /* MockURLSessionDataTask.swift in Sources */,
+				E6DA3E10202A1542006D1339 /* MockURLSession.swift in Sources */,
 				5556B6FE200EEF7800A3A88B /* OnTheMapTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

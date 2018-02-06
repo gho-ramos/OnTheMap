@@ -9,6 +9,9 @@
 import UIKit
 
 extension UIApplication {
+    /// Test the parameter string as URL and try to open it
+    ///
+    /// - Parameter url: String of the desired url
     func open(url: String?) {
         guard let url = url else { return }
         guard let builtUrl = URL(string: url) else { return }

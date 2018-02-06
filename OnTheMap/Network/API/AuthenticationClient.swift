@@ -24,7 +24,7 @@ class AuthenticationClient: NSObject {
         if let xsrfCookie = xsrfCookie {
             request.setValue(xsrfCookie.value, forHTTPHeaderField: Headers.XsrfToken)
         }
-        Network.shared.delete(request: request, decoderType: AuthenticationResponse.self) { (session, error) in
+        NetworkClient().delete(request: request, decoder: AuthenticationResponse.self) { (session, error) in
             if let error = error {
                 failure(error)
             } else {
@@ -36,8 +36,8 @@ class AuthenticationClient: NSObject {
     func login(with facebook: FacebookAuthentication, success: @escaping ((AuthenticationResponse?) -> Void), failure: @escaping ((Error?) -> Void)) {
         let request = NSMutableURLRequest(url: udacityURL(with: [:], for: Methods.Session))
         let body = PostAuthentication(facebook: facebook, udacity: nil)
-        Network.shared.post(request: request, body: body,
-                            decoderType: AuthenticationResponse.self) { (authentication, error) in
+        NetworkClient().post(request: request, body: body,
+                            decoder: AuthenticationResponse.self) { (authentication, error) in
             if let error = error {
                 failure(error)
             } else {
@@ -49,8 +49,8 @@ class AuthenticationClient: NSObject {
     func login(with udacityUser: UdacityAuthentication, success: @escaping ((AuthenticationResponse?) -> Void), failure: @escaping ((Error?) -> Void)) {
         let request = NSMutableURLRequest(url: udacityURL(with: [:], for: Methods.Session))
         let body = PostAuthentication(facebook: nil, udacity: udacityUser)
-        Network.shared.post(request: request, body: body,
-                            decoderType: AuthenticationResponse.self) { (authentication, error) in
+        NetworkClient().post(request: request, body: body,
+                             decoder: AuthenticationResponse.self) { (authentication, error) in
             if let error = error {
                 failure(error)
             } else {
@@ -63,7 +63,7 @@ class AuthenticationClient: NSObject {
         let request = NSMutableURLRequest(url:
             udacityURL(with: [:], for: Methods.UsersUserID.replace(key: Keys.UserID, to: accountKey))
         )
-        Network.shared.get(request: request as URLRequest, decoderType: Response.self) { (response, error) in
+        NetworkClient().get(request: request as URLRequest, decoder: Response.self) { (response, error) in
             if let error = error {
                 failure(error)
             } else {
@@ -78,6 +78,6 @@ class AuthenticationClient: NSObject {
         components.host = Constants.ApiHost
         components.path = Constants.ApiPath + (pathExtension ?? "")
 
-        return Network.buildURL(forComponents: components, with: parameters)!
+        return NetworkClient.buildURL(forComponents: components, with: parameters)!
     }
 }
