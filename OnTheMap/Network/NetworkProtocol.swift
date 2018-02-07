@@ -7,6 +7,13 @@
 //
 
 import Foundation
+//
+// The Protocols here used to create my testings of my networking layer were taken from the reference
+// indicated below
+// Reference
+// http://masilotti.com/testing-nsurlsession-input/
+//
+
 
 typealias DataTaskResult = (Data?, URLResponse?, Error?) -> Void
 
@@ -20,7 +27,7 @@ protocol URLSessionDataTaskProtocol {
 }
 
 extension URLSession: URLSessionProtocol {
-    func dataTask(with url: URL, completionHandler: @escaping DataTaskResult) -> URLSessionDataTaskProtocol {
+        func dataTask(with url: URL, completionHandler: @escaping DataTaskResult) -> URLSessionDataTaskProtocol {
         let task = dataTask(with: url, completionHandler: completionHandler) as URLSessionDataTask
         return task as URLSessionDataTaskProtocol
     }
