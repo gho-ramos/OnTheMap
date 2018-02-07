@@ -11,7 +11,6 @@ import UIKit
 class Loader: NSObject {
     static var loaderView: UIView?
 
-
     /// Create a loading activity view centered on the frame's parameter
     ///
     /// - Parameter frame: Parent view frame
@@ -54,7 +53,6 @@ class Loader: NSObject {
             viewController.view.addSubview(loaderView!)
         }
     }
-
 
     /// Hide the current visible loader
     class func hide() {

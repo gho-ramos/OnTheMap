@@ -18,7 +18,7 @@ class MapViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         mapView.delegate = mapViewControllerDelegateHandler
-        loadStudents()
+        loadStudents(shouldForceReload: false)
         configureUI()
     }
 
@@ -31,6 +31,10 @@ class MapViewController: UIViewController {
         loadStudents(shouldForceReload: true)
     }
 
+    /// Reload users requesting from the server OR load the users using the object stored
+    /// within an instance of the singleton.
+    ///
+    /// - Parameter shouldForceReload: Boolean indicating if the application should make a server request OR use local stored values
     func loadStudents(shouldForceReload: Bool = true) {
         Loader.show(on: self)
         if shouldForceReload || StudentInformationClient.shared.all.count == 0 {
@@ -49,10 +53,13 @@ class MapViewController: UIViewController {
         }
     }
 
+    /// Create a set of annotations to place pins on the map
     func populateStudentsMap() {
         var annotations = [MKPointAnnotation]()
 
         for student in StudentInformationClient.shared.all {
+            // Use the studentAnnotationPoint method from the model to make it easy to create
+            // the annotations and shorten the amount of code on the viewController
             if let annotation = student.studentAnnotationPoint() {
                 annotations.append(annotation)
             }

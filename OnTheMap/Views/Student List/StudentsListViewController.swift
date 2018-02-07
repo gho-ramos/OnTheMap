@@ -15,10 +15,11 @@ class StudentsListViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        loadStudents(shouldForceReload: true)
+        loadStudents(shouldForceReload: false)
         configureUI()
     }
 
+    /// Setup UI Elements
     func configureUI() {
         let refreshButton = UIBarButtonItem(image: #imageLiteral(resourceName: "icon_refresh"), style: .plain, target: self, action: #selector(reloadStudents))
         navigationItem.rightBarButtonItems?.append(refreshButton)
@@ -28,9 +29,13 @@ class StudentsListViewController: UIViewController {
         loadStudents(shouldForceReload: true)
     }
 
+    /// Reload users requesting from the server OR load the users using the object stored
+    /// within an instance of the singleton.
+    ///
+    /// - Parameter shouldForceReload: Boolean indicating if the application should make a server request OR use local stored values
     func loadStudents(shouldForceReload: Bool = true) {
         Loader.show(on: self)
-        if shouldForceReload {
+        if shouldForceReload || StudentInformationClient.shared.all.count == 0 {
             let parameters = ["order": "-updatedAt"]
             StudentInformationClient.shared.getStudents(with: parameters as [String: AnyObject], success: { _ in
                 Loader.hide()
@@ -47,9 +52,14 @@ class StudentsListViewController: UIViewController {
         }
     }
 
+    /// Configure the cell of the tableView
+    ///
+    /// - Parameters:
+    ///   - cell: tableViewCell that will receive the text elements
+    ///   - student: Student Object that contains relevant information to be used within the cell
     func configure(cell: UITableViewCell?, student: StudentLocation?) {
         if let cell = cell, let student = student {
-            cell.textLabel?.text = student.fullName()
+            cell.textLabel?.text = student.fullName
             cell.detailTextLabel?.text = student.mediaURL ?? ""
         }
     }

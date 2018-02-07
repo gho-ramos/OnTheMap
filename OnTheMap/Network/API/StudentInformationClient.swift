@@ -37,17 +37,7 @@ class StudentInformationClient: NSObject {
 
     func saveStudent(_ student: StudentLocation, success: @escaping (StudentLocation?) -> Void, failure: @escaping (Error?) -> Void) {
         let request = baseParseRequest(with: [:])
-        let body = """
-            {
-                \"uniqueKey\": \"\(student.uniqueKey ?? "")\",
-                \"firstName\": \"\(student.firstName ?? "")\",
-                \"lastName\": \"\(student.lastName ?? "")\",
-                \"mapString\": \"\(student.mapString ?? "")\",
-                \"mediaURL\": \"\(student.mediaURL ?? "")\",
-                \"latitude\": \(student.latitude ?? 0.0),
-                \"longitude\": \(student.longitude ?? 0.0)
-            }
-            """
+        let body = String(describing: student)
         NetworkClient().post(request: request, body: body, decoder: StudentLocation.self) { (student, error) in
             if error != nil {
                 failure(error)

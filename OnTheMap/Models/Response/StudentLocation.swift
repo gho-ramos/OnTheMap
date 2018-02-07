@@ -20,8 +20,17 @@ struct StudentLocation: Codable {
     let createdAt: String?
     let updatedAt: String?
 
-    func fullName() -> String {
-        return "\(firstName ?? "") \(lastName ?? "")"
+    enum CodingKeys: String, CodingKey {
+        case objectId
+        case uniqueKey
+        case firstName
+        case lastName
+        case mapString
+        case mediaURL
+        case latitude
+        case longitude
+        case createdAt
+        case updatedAt
     }
 
     func studentAnnotationPoint() -> MKPointAnnotation? {
@@ -31,9 +40,31 @@ struct StudentLocation: Codable {
 
         let annotation = MKPointAnnotation()
         annotation.coordinate = coordinate
-        annotation.title = fullName()
+        annotation.title = fullName
         annotation.subtitle = mediaURL
 
         return annotation
+    }
+}
+
+extension StudentLocation: CustomStringConvertible {
+    var fullName: String {
+        get {
+            return "\(firstName ?? "") \(lastName ?? "")"
+        }
+    }
+
+    var description: String {
+        return """
+        {
+            \"uniqueKey\": \"\(uniqueKey ?? "")\",
+            \"firstName\": \"\(firstName ?? "")\",
+            \"lastName\": \"\(lastName ?? "")\",
+            \"mapString\": \"\(mapString ?? "")\",
+            \"mediaURL\": \"\(mediaURL ?? "")\",
+            \"latitude\": \(latitude ?? 0),
+            \"longitude\": \(longitude ?? 0)
+        }
+        """
     }
 }

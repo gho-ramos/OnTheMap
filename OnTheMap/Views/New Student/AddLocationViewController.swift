@@ -19,11 +19,17 @@ class AddLocationViewController: UIViewController {
         return instance(from: "New", identifier: String(describing: self.self))
     }
 
+    /// Search location of the user based on what the user typed
+
     private func searchLocation() {
         Loader.show(on: self)
+
+        /// Using the LocalSearchRequest API on the mapKit
+
         let request = MKLocalSearchRequest()
         request.naturalLanguageQuery = locationTextField.text
         let search = MKLocalSearch(request: request)
+
         search.start { (response, error) in
             Loader.hide()
 
@@ -35,6 +41,7 @@ class AddLocationViewController: UIViewController {
             guard let response = response else {
                 return
             }
+            // Get all the information and pass to the addLocation view controller
 
             self.performSegue(withIdentifier: self.kShowAddLocationMapSegueIdentifier, sender: response.mapItems)
         }
@@ -51,6 +58,7 @@ class AddLocationViewController: UIViewController {
     }
 
     // MARK: Navigation
+
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == kShowAddLocationMapSegueIdentifier,
             let addLocationMapViewController = segue.destination as? AddLocationMapViewController {

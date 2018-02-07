@@ -26,7 +26,7 @@ class OnTheMapTests: XCTestCase {
         session.nextResponse = MockURLSession.response200()
         session.nextData = encode(expected)
 
-        client.get(request: request as URLRequest, decoder: Account.self) { (result, error) in
+        client.get(request: request as URLRequest, decoder: Account.self) { (result, _) in
             if result != nil {
                 actualData = result
             } else {
@@ -49,7 +49,7 @@ class OnTheMapTests: XCTestCase {
         session.nextResponse = MockURLSession.response200()
         session.nextData = encode(expected)
 
-        client.post(request: request, body: body, decoder: AuthenticationResponse.self) { (result, error) in
+        client.post(request: request, body: body, decoder: AuthenticationResponse.self) { (result, _) in
             if result != nil {
                 actualData = result
             } else {
@@ -79,7 +79,7 @@ class OnTheMapTests: XCTestCase {
         session.nextResponse = MockURLSession.response200()
         session.nextData = encode(expected)
 
-        client.post(request: request, body: body, decoder: StudentLocation.self) { (result, error) in
+        client.post(request: request, body: body, decoder: StudentLocation.self) { (result, _) in
             if result != nil {
                 actualData = result
             } else {
@@ -98,7 +98,7 @@ class OnTheMapTests: XCTestCase {
         session.nextResponse = MockURLSession.response200()
         session.nextData = encode(expected)
 
-        client.delete(request: request, decoder: Account.self) { (result, error) in
+        client.delete(request: request, decoder: Account.self) { (result, _) in
             if result != nil {
                 actualData = result
             } else {

@@ -44,8 +44,16 @@ class AddLocationMapViewController: UIViewController {
 
     // MARK: Actions
     @IBAction func saveUserLocation() {
+        // The screen will only load if the mapItem object returns successfully
+        // but to guarantee that we have some coordinate, i'm checking the optional
+        // to avoid errors, posting empty coordinates to the server
         guard let coordinate = mapItem?.placemark.coordinate else { return }
+
+        // Checking if the user is logged
         guard let user = SessionManager.shared.user else { return }
+
+        // Create the student object, with the information gathered until now
+
         let studentLocation = StudentLocation(objectId: nil, uniqueKey: user.key,
                                               firstName: user.firstName, lastName: user.lastName,
                                               mapString: mapString, mediaURL: mediaURL,
@@ -53,6 +61,11 @@ class AddLocationMapViewController: UIViewController {
                                               createdAt: nil, updatedAt: nil)
 
         Loader.show(on: self)
+
+        // Post the student object to the server and wait for a response to either return
+        // to the last viewController on the tabBarController or warn the user that the request
+        // failed.
+
         StudentInformationClient.shared.saveStudent(studentLocation, success: { student in
             Loader.hide()
             if student != nil {

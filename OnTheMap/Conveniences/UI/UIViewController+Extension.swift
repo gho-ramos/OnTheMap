@@ -22,7 +22,6 @@ extension UIViewController {
         return genericStoryboardInstance(with: storyboardName, identifier: identifier)!
     }
 
-
     /// Get a generic viewController (type defined on execution) with an identifier
     /// from a named storyboard
     ///
@@ -56,7 +55,6 @@ extension UIViewController {
             present(navController, animated: true, completion: nil)
         }
     }
-
 
     /// Prompts the user if him/her really wants to exit the application
     /// if positive, it removes the user's session

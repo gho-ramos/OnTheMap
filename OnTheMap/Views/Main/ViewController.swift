@@ -29,7 +29,9 @@ class ViewController: UIViewController {
     }
 
     @IBAction func login(_ sender: Any?) {
-        if let username = usernameTextField.text, let password = passwordTextField.text {
+        // Check if username, password is null
+        if let username = usernameTextField.text, let password = passwordTextField.text,
+            (!username.isEmpty && !password.isEmpty) {
             Loader.show(on: self)
             let user = UdacityAuthentication(username: username, password: password)
             AuthenticationClient.shared.login(with: user, success: { authentication in
@@ -38,6 +40,8 @@ class ViewController: UIViewController {
                 Loader.hide()
                 Dialog.show(error: error)
             })
+        } else {
+            Dialog.show(message: "You must inform a username and a password to login", title: "Wait!")
         }
     }
 
@@ -45,6 +49,9 @@ class ViewController: UIViewController {
         open(url: "https://www.udacity.com/account/auth#!/signup")
     }
 
+    /// Complete the login using a AuthenticationResponse to get the user information from the server
+    ///
+    /// - Parameter authentication: Authentication returned from the server on a login request
     private func completeLogin(for authentication: AuthenticationResponse?) {
         if let auth = authentication, let acc = auth.account, let key = acc.key {
             AuthenticationClient.shared.getUserInformation(for: key, success: { response in
@@ -62,6 +69,8 @@ class ViewController: UIViewController {
         }
     }
 
+    /// Complete the login process and move the user to the NavigationTabBarController where the mapViewController and
+    /// tableViewControllers are
     private func completeLogin() {
         performUIUpdatesOnMain {
             let navigationTabController = UIStoryboard.init(name: "Main", bundle: nil)
@@ -73,6 +82,9 @@ class ViewController: UIViewController {
 
 extension ViewController: LoginButtonDelegate {
 
+    /// Authenticate the user using a token returned from the facebook login process
+    ///
+    /// - Parameter token: Facebook AuthenticationToken
     fileprivate func facebookLogin(with token: String) {
         Loader.show(on: self)
         let facebookAuthentication = FacebookAuthentication(token: token)
