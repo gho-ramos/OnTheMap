@@ -49,9 +49,7 @@ struct StudentLocation: Codable {
 
 extension StudentLocation: CustomStringConvertible {
     var fullName: String {
-        get {
-            return "\(firstName ?? "") \(lastName ?? "")"
-        }
+        return "\(firstName ?? "") \(lastName ?? "")"
     }
 
     var description: String {
