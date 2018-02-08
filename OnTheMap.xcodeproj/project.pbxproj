@@ -39,7 +39,7 @@
 		AA92FB8B2B2EE6F918499CC5 /* Pods_OnTheMapUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 094378AED0CDEEDD815162AB /* Pods_OnTheMapUITests.framework */; };
 		E654ECAC202893A200787DD6 /* Response.swift in Sources */ = {isa = PBXBuildFile; fileRef = E654ECAB202893A200787DD6 /* Response.swift */; };
 		E654ECAE202898E900787DD6 /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E654ECAD202898E900787DD6 /* String+Extension.swift */; };
-		E654ECB32028C35800787DD6 /* SessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E654ECB22028C35800787DD6 /* SessionManager.swift */; };
+		E654ECB32028C35800787DD6 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E654ECB22028C35800787DD6 /* DataManager.swift */; };
 		E6727F4420161848005735AF /* AuthenticationClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6727F4320161848005735AF /* AuthenticationClient.swift */; };
 		E6727F482016559C005735AF /* StudentLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6727F472016559C005735AF /* StudentLocation.swift */; };
 		E6727F4A20165D52005735AF /* StudentInformationClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6727F4920165D52005735AF /* StudentInformationClient.swift */; };
@@ -129,7 +129,7 @@
 		E3683145B456FBD96C96882D /* Pods-OnTheMapUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OnTheMapUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-OnTheMapUITests/Pods-OnTheMapUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		E654ECAB202893A200787DD6 /* Response.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Response.swift; sourceTree = "<group>"; };
 		E654ECAD202898E900787DD6 /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
-		E654ECB22028C35800787DD6 /* SessionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionManager.swift; sourceTree = "<group>"; };
+		E654ECB22028C35800787DD6 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		E6727F4320161848005735AF /* AuthenticationClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationClient.swift; sourceTree = "<group>"; };
 		E6727F472016559C005735AF /* StudentLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentLocation.swift; sourceTree = "<group>"; };
 		E6727F4920165D52005735AF /* StudentInformationClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentInformationClient.swift; sourceTree = "<group>"; };
@@ -396,7 +396,7 @@
 		E654ECB12028C34600787DD6 /* Managers */ = {
 			isa = PBXGroup;
 			children = (
-				E654ECB22028C35800787DD6 /* SessionManager.swift */,
+				E654ECB22028C35800787DD6 /* DataManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -764,7 +764,7 @@
 				5525D8C620158C5500100E37 /* RequestStatus.swift in Sources */,
 				55BE981E20266FD3008DA955 /* FacebookAuthentication.swift in Sources */,
 				E654ECAC202893A200787DD6 /* Response.swift in Sources */,
-				E654ECB32028C35800787DD6 /* SessionManager.swift in Sources */,
+				E654ECB32028C35800787DD6 /* DataManager.swift in Sources */,
 				5525D8BC20156EC600100E37 /* Account.swift in Sources */,
 				E6BE080B202106E000C07EF8 /* NetworkError.swift in Sources */,
 				E6727F4A20165D52005735AF /* StudentInformationClient.swift in Sources */,

@@ -34,7 +34,7 @@ class ViewController: UIViewController {
             (!username.isEmpty && !password.isEmpty) {
             Loader.show(on: self)
             let user = UdacityAuthentication(username: username, password: password)
-            AuthenticationClient.shared.login(with: user, success: { authentication in
+            AuthenticationClient().login(with: user, success: { authentication in
                 self.completeLogin(for: authentication)
             }, failure: { error in
                 Loader.hide()
@@ -54,9 +54,9 @@ class ViewController: UIViewController {
     /// - Parameter authentication: Authentication returned from the server on a login request
     private func completeLogin(for authentication: AuthenticationResponse?) {
         if let auth = authentication, let acc = auth.account, let key = acc.key {
-            AuthenticationClient.shared.getUserInformation(for: key, success: { response in
+            AuthenticationClient().getUserInformation(for: key, success: { response in
                 Loader.hide()
-                SessionManager.shared.user = response?.user
+                DataManager.shared.user = response?.user
                 self.completeLogin()
             }, failure: { error in
                 Loader.hide()
@@ -88,7 +88,7 @@ extension ViewController: LoginButtonDelegate {
     fileprivate func facebookLogin(with token: String) {
         Loader.show(on: self)
         let facebookAuthentication = FacebookAuthentication(token: token)
-        AuthenticationClient.shared.login(with: facebookAuthentication, success: { authentication in
+        AuthenticationClient().login(with: facebookAuthentication, success: { authentication in
             self.completeLogin(for: authentication)
         }, failure: { error in
             Loader.hide()

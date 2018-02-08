@@ -50,7 +50,7 @@ class AddLocationMapViewController: UIViewController {
         guard let coordinate = mapItem?.placemark.coordinate else { return }
 
         // Checking if the user is logged
-        guard let user = SessionManager.shared.user else { return }
+        guard let user = DataManager.shared.user else { return }
 
         // Create the student object, with the information gathered until now
 
@@ -66,7 +66,7 @@ class AddLocationMapViewController: UIViewController {
         // to the last viewController on the tabBarController or warn the user that the request
         // failed.
 
-        StudentInformationClient.shared.saveStudent(studentLocation, success: { student in
+        StudentInformationClient().saveStudent(studentLocation, success: { student in
             Loader.hide()
             if student != nil {
                 performUIUpdatesOnMain {

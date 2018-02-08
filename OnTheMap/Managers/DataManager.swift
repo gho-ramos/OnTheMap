@@ -10,7 +10,7 @@ import UIKit
 
 class DataManager: NSObject {
     var user: UserResponse?
-    var all = [StudentLocation]()
+    var students = [StudentLocation]()
 
     static let shared = DataManager()
 

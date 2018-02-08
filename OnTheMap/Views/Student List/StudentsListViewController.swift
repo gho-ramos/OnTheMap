@@ -35,9 +35,9 @@ class StudentsListViewController: UIViewController {
     /// - Parameter shouldForceReload: Boolean indicating if the application should make a server request OR use local stored values
     func loadStudents(shouldForceReload: Bool = true) {
         Loader.show(on: self)
-        if shouldForceReload || StudentInformationClient.shared.all.count == 0 {
-            let parameters = ["order": "-updatedAt"]
-            StudentInformationClient.shared.getStudents(with: parameters as [String: AnyObject], success: { _ in
+        if shouldForceReload || DataManager.shared.students.count == 0 {
+            let parameters = ["order": "-updatedAt", "limit": "100"]
+            StudentInformationClient().getStudents(with: parameters as [String: AnyObject], success: { _ in
                 Loader.hide()
                 performUIUpdatesOnMain {
                     self.tableView.reloadData()
@@ -67,12 +67,12 @@ class StudentsListViewController: UIViewController {
 
 extension StudentsListViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return StudentInformationClient.shared.all.count
+        return DataManager.shared.students.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier)
-        let student = StudentInformationClient.shared.all[indexPath.row]
+        let student = DataManager.shared.students[indexPath.row]
 
         configure(cell: cell, student: student)
 
@@ -82,7 +82,7 @@ extension StudentsListViewController: UITableViewDataSource {
 
 extension StudentsListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let student = StudentInformationClient.shared.all[indexPath.row]
+        let student = DataManager.shared.students[indexPath.row]
 
         open(url: student.mediaURL)
     }

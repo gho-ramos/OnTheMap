@@ -9,10 +9,11 @@
 import UIKit
 
 class StudentInformationClient: NSObject {
-    static let shared = StudentInformationClient()
-    var all = [StudentLocation]()
+    let client: NetworkClient!
 
-    private override init() {}
+    init(session: URLSessionProtocol = URLSession.shared) {
+        client = NetworkClient(session: session)
+    }
 
     fileprivate func baseParseRequest(with parameters: [String: AnyObject]) -> NSMutableURLRequest {
         let request = NSMutableURLRequest(url: parseURL(with: parameters))
@@ -23,14 +24,15 @@ class StudentInformationClient: NSObject {
 
     func getStudents(with parameters: [String: AnyObject], success: @escaping ([StudentLocation]?) -> Void, failure: @escaping (Error?) -> Void) {
         let request = baseParseRequest(with: parameters)
-        NetworkClient().get(request: request as URLRequest, decoder: Students.self) { (students, error) in
+        client.get(request: request as URLRequest, decoder: Students.self) { (students, error) in
             if error != nil {
                 failure(error)
             } else {
-                if let all = students?.results {
-                    self.all = all
+
+                if let students = students?.results {
+                    DataManager.shared.students = students
                 }
-                success(self.all)
+                success(students?.results)
             }
         }
     }
@@ -38,7 +40,7 @@ class StudentInformationClient: NSObject {
     func saveStudent(_ student: StudentLocation, success: @escaping (StudentLocation?) -> Void, failure: @escaping (Error?) -> Void) {
         let request = baseParseRequest(with: [:])
         let body = String(describing: student)
-        NetworkClient().post(request: request, body: body, decoder: StudentLocation.self) { (student, error) in
+        client.post(request: request, body: body, decoder: StudentLocation.self) { (student, error) in
             if error != nil {
                 failure(error)
             } else {

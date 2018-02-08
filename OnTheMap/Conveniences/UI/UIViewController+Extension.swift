@@ -63,10 +63,10 @@ extension UIViewController {
     @IBAction func logout(_ sender: Any?) {
         Dialog.show(message: "Do you really wish to logout from the application?", title: "Wait!") {
             Loader.show(on: self)
-            AuthenticationClient.shared.logout(success: { (_) in
+            AuthenticationClient().logout(success: { (_) in
                 Loader.hide()
                 performUIUpdatesOnMain {
-                    SessionManager.shared.user = nil
+                    DataManager.shared.user = nil
                     if AccessToken.current != nil {
                         LoginManager().logOut()
                     }

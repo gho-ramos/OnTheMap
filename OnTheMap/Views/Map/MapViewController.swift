@@ -37,8 +37,9 @@ class MapViewController: UIViewController {
     /// - Parameter shouldForceReload: Boolean indicating if the application should make a server request OR use local stored values
     func loadStudents(shouldForceReload: Bool = true) {
         Loader.show(on: self)
-        if shouldForceReload || StudentInformationClient.shared.all.count == 0 {
-            StudentInformationClient.shared.getStudents(with: [:], success: { _ in
+        if shouldForceReload || DataManager.shared.students.count == 0 {
+            let parameters = ["limit": "100"]
+            StudentInformationClient().getStudents(with: parameters as [String: AnyObject], success: { _ in
                 Loader.hide()
                 performUIUpdatesOnMain {
                     self.populateStudentsMap()
@@ -57,7 +58,7 @@ class MapViewController: UIViewController {
     func populateStudentsMap() {
         var annotations = [MKPointAnnotation]()
 
-        for student in StudentInformationClient.shared.all {
+        for student in DataManager.shared.students {
             // Use the studentAnnotationPoint method from the model to make it easy to create
             // the annotations and shorten the amount of code on the viewController
             if let annotation = student.studentAnnotationPoint() {

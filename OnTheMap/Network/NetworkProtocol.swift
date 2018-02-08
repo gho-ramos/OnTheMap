@@ -14,7 +14,6 @@ import Foundation
 // http://masilotti.com/testing-nsurlsession-input/
 //
 
-
 typealias DataTaskResult = (Data?, URLResponse?, Error?) -> Void
 
 protocol URLSessionProtocol {
