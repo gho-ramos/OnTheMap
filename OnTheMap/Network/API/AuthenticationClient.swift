@@ -15,7 +15,7 @@ class AuthenticationClient: NSObject {
         client = NetworkClient(session: session)
     }
 
-    func logout(success: @escaping (AuthenticationResponse?) -> Void, failure: @escaping (Error?) -> Void) {
+    func logout(success: @escaping (AuthenticationResponse?) -> Void, failure: @escaping (NetworkError?) -> Void) {
         let request = NSMutableURLRequest(url: udacityURL(with: [:], for: Methods.Session))
         let httpCookieStorage = HTTPCookieStorage.shared
         var xsrfCookie: HTTPCookie? = nil
@@ -36,7 +36,7 @@ class AuthenticationClient: NSObject {
         }
     }
 
-    func login(with facebook: FacebookAuthentication, success: @escaping ((AuthenticationResponse?) -> Void), failure: @escaping ((Error?) -> Void)) {
+    func login(with facebook: FacebookAuthentication, success: @escaping ((AuthenticationResponse?) -> Void), failure: @escaping ((NetworkError?) -> Void)) {
         let request = NSMutableURLRequest(url: udacityURL(with: [:], for: Methods.Session))
         let body = PostAuthentication(facebook: facebook, udacity: nil)
         client.post(request: request, body: body,
@@ -49,7 +49,7 @@ class AuthenticationClient: NSObject {
         }
     }
 
-    func login(with udacityUser: UdacityAuthentication, success: @escaping ((AuthenticationResponse?) -> Void), failure: @escaping ((Error?) -> Void)) {
+    func login(with udacityUser: UdacityAuthentication, success: @escaping ((AuthenticationResponse?) -> Void), failure: @escaping ((NetworkError?) -> Void)) {
         let request = NSMutableURLRequest(url: udacityURL(with: [:], for: Methods.Session))
         let body = PostAuthentication(facebook: nil, udacity: udacityUser)
         client.post(request: request, body: body,

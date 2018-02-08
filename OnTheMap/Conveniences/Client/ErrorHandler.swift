@@ -40,10 +40,14 @@ class ErrorHandler: NSObject {
             let error = ErrorHandler.buildError(message: "There was an error with your request",
                                                 code: 0,
                                                 err: err)
-            return RequestStatus(success: false, error: error)
+            return RequestStatus(success: false, error: NetworkError.defaultError(error))
         }
 
-        guard let statusCode = (response as? HTTPURLResponse)?.statusCode, statusCode >= 200 && statusCode <= 299 else {
+        guard let statusCode = (response as? HTTPURLResponse)?.statusCode, statusCode != 403 else {
+            return RequestStatus(success: false, error: NetworkError.unauthorized)
+        }
+
+        guard statusCode >= 200 && statusCode <= 299 else {
             let error = ErrorHandler.buildError(message: "There was an error with your request",
                                                 code: 0,
                                                 err: err)
@@ -53,8 +57,8 @@ class ErrorHandler: NSObject {
         guard data != nil else {
             let error = ErrorHandler.buildError(message: "No data was returned by the request",
                                                 code: 0,
-                                                err: NetworkError.noResultsFound)
-            return RequestStatus(success: false, error: error)
+                                                err: err)
+            return RequestStatus(success: false, error: NetworkError.noResultsFound(error))
         }
         return RequestStatus(success: true, error: nil)
     }

@@ -10,5 +10,5 @@ import Foundation
 
 struct RequestStatus {
     let success: Bool
-    let error: Error?
+    let error: NetworkError?
 }

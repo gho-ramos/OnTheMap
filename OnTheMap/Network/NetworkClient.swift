@@ -9,9 +9,7 @@
 import UIKit
 
 class NetworkClient: NSObject {
-    typealias SuccessCompletionBlock<T> = (_ result: T?) -> Void
-    typealias FailureCompletionBlock = (_ error: Error?) -> Void
-    typealias CompletionBlock<T> = (_ result: T?, _ error: Error?) -> Void
+    typealias NetworkingCompletionBlock<T> = (_ result: T?, _ error: NetworkError?) -> Void
 
     private let session: URLSessionProtocol
 
@@ -21,10 +19,10 @@ class NetworkClient: NSObject {
 
     // MARK: HTTP Methods
 
-    func get<T: Decodable>(request: URLRequest, decoder type: T.Type, completion: @escaping CompletionBlock<T>) {
-        let task = handler(request: request) { (data, error) in
+    func get<T: Decodable>(request: URLRequest, decoder type: T.Type, completion: @escaping NetworkingCompletionBlock<T>) {
+        let task = taskHandler(request: request) { (data, error) in
             guard let data = data else {
-                completion(nil, NetworkError.noResultsFound)
+                completion(nil, NetworkError.noResultsFound(error))
                 return
             }
             do {
@@ -32,20 +30,20 @@ class NetworkClient: NSObject {
                 let decoded = try decoder.decode(type, from: data)
                 completion(decoded, nil)
             } catch let error {
-                completion(nil, error)
+                completion(nil, NetworkError.decodeFailure(error))
             }
         }
         task.resume()
     }
 
-    func post<T: Codable>(request: NSMutableURLRequest, body: String, decoder type: T.Type, completion: @escaping CompletionBlock<T>) {
+    func post<T: Codable>(request: NSMutableURLRequest, body: String, decoder type: T.Type, completion: @escaping NetworkingCompletionBlock<T>) {
         request.httpMethod = "POST"
         request.addValue("application/json", forHTTPHeaderField: "Accept")
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         request.httpBody = body.data(using: .utf8)
-        let task = handler(request: request as URLRequest) { (data, error) in
+        let task = taskHandler(request: request as URLRequest) { (data, error) in
             guard let data = data else {
-                completion(nil, NetworkError.noResultsFound)
+                completion(nil, NetworkError.noResultsFound(error))
                 return
             }
 
@@ -60,19 +58,19 @@ class NetworkClient: NSObject {
         task.resume()
     }
 
-    func post<T: Codable, J: Encodable>(request: NSMutableURLRequest, body: J, decoder type: T.Type, completion: @escaping CompletionBlock<T>) {
+    func post<T: Codable, J: Encodable>(request: NSMutableURLRequest, body: J, decoder type: T.Type, completion: @escaping NetworkingCompletionBlock<T>) {
         request.httpMethod = "POST"
         request.addValue("application/json", forHTTPHeaderField: "Accept")
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         do {
             request.httpBody = try encode(body)
         } catch let error {
-            completion(nil, error)
+            completion(nil, NetworkError.encodeFailure(error))
             return
         }
-        let task = handler(request: request as URLRequest) { (data, error) in
+        let task = taskHandler(request: request as URLRequest) { (data, error) in
             guard let data = data else {
-                completion(nil, NetworkError.noResultsFound)
+                completion(nil, NetworkError.noResultsFound(error))
                 return
             }
             do {
@@ -86,11 +84,11 @@ class NetworkClient: NSObject {
         task.resume()
     }
 
-    func delete<T: Codable>(request: NSMutableURLRequest, decoder type: T.Type, completion: @escaping CompletionBlock<T>) {
+    func delete<T: Codable>(request: NSMutableURLRequest, decoder type: T.Type, completion: @escaping NetworkingCompletionBlock<T>) {
         request.httpMethod = "DELETE"
-        let task = handler(request: request as URLRequest) { (data, error) in
+        let task = taskHandler(request: request as URLRequest) { (data, error) in
             guard let data = data else {
-                completion(nil, NetworkError.noResultsFound)
+                completion(nil, NetworkError.noResultsFound(error))
                 return
             }
             do {
@@ -106,7 +104,7 @@ class NetworkClient: NSObject {
 
     // MARK: Data related methods
 
-    private func handler(request: URLRequest, completion: @escaping (_ data: Data?, _ error: Error?) -> Void) -> URLSessionDataTaskProtocol {
+    private func taskHandler(request: URLRequest, completion: @escaping ((_ data: Data?, _ error: NetworkError?) -> Void)) -> URLSessionDataTaskProtocol {
         let isUdacity = request.url?.absoluteString.range(of: AuthenticationClient.Constants.ApiHost) != nil
         let task = session.dataTask(with: request) { (data, response, error) in
             let status = ErrorHandler.checkStatus(data, response, error)

@@ -61,6 +61,7 @@ class ViewController: UIViewController {
             }, failure: { error in
                 Loader.hide()
                 Dialog.show(error: error)
+                Dialog.show(message: "Failed to fetch your account information", title: "Error")
             })
         } else {
             Loader.hide()
@@ -92,7 +93,8 @@ extension ViewController: LoginButtonDelegate {
             self.completeLogin(for: authentication)
         }, failure: { error in
             Loader.hide()
-            Dialog.show(error: error)
+            Dialog.show(message: "Sorry, we were not able to complete the authentication, try again later.",
+                        title: "Login Failed")
         })
     }
 
