@@ -40,7 +40,7 @@ class ErrorHandler: NSObject {
             let error = ErrorHandler.buildError(message: "There was an error with your request",
                                                 code: 0,
                                                 err: err)
-            return RequestStatus(success: false, error: NetworkError.defaultError(error))
+            return RequestStatus(success: false, error: NetworkError.error(error))
         }
 
         guard let statusCode = (response as? HTTPURLResponse)?.statusCode, statusCode != 403 else {

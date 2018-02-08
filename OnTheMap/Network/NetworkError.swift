@@ -10,7 +10,7 @@ import Foundation
 
 enum NetworkError: Error {
     case unauthorized
-    case defaultError(Error?)
+    case error(Error?)
     case encodeFailure(Error?)
     case decodeFailure(Error?)
     case networkFailure(Error?)
