@@ -23,9 +23,13 @@ class NetworkClient: NSObject {
 
     func get<T: Decodable>(request: URLRequest, decoder type: T.Type, completion: @escaping CompletionBlock<T>) {
         let task = handler(request: request) { (data, error) in
+            guard let data = data else {
+                completion(nil, NetworkError.noResultsFound)
+                return
+            }
             do {
                 let decoder = JSONDecoder()
-                let decoded = try decoder.decode(type, from: data!)
+                let decoded = try decoder.decode(type, from: data)
                 completion(decoded, nil)
             } catch let error {
                 completion(nil, error)
@@ -40,16 +44,17 @@ class NetworkClient: NSObject {
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         request.httpBody = body.data(using: .utf8)
         let task = handler(request: request as URLRequest) { (data, error) in
-            if let data = data {
-                do {
-                    let decoder = JSONDecoder()
-                    let decoded = try decoder.decode(type, from: data)
-                    completion(decoded, nil)
-                } catch let error {
-                   completion(nil, NetworkError.decodeFailure(error))
-                }
-            } else {
-                completion(nil, error)
+            guard let data = data else {
+                completion(nil, NetworkError.noResultsFound)
+                return
+            }
+
+            do {
+                let decoder = JSONDecoder()
+                let decoded = try decoder.decode(type, from: data)
+                completion(decoded, nil)
+            } catch let error {
+                completion(nil, NetworkError.decodeFailure(error))
             }
         }
         task.resume()
@@ -66,16 +71,16 @@ class NetworkClient: NSObject {
             return
         }
         let task = handler(request: request as URLRequest) { (data, error) in
-            if let data = data {
-                do {
-                    let decoder = JSONDecoder()
-                    let decoded = try decoder.decode(type, from: data)
-                    completion(decoded, nil)
-                } catch let error {
-                    completion(nil, NetworkError.decodeFailure(error))
-                }
-            } else {
-                completion(nil, error)
+            guard let data = data else {
+                completion(nil, NetworkError.noResultsFound)
+                return
+            }
+            do {
+                let decoder = JSONDecoder()
+                let decoded = try decoder.decode(type, from: data)
+                completion(decoded, nil)
+            } catch let error {
+                completion(nil, NetworkError.decodeFailure(error))
             }
         }
         task.resume()
@@ -84,16 +89,16 @@ class NetworkClient: NSObject {
     func delete<T: Codable>(request: NSMutableURLRequest, decoder type: T.Type, completion: @escaping CompletionBlock<T>) {
         request.httpMethod = "DELETE"
         let task = handler(request: request as URLRequest) { (data, error) in
-            if let data = data {
-                do {
-                    let decoder = JSONDecoder()
-                    let decoded = try decoder.decode(type, from: data)
-                    completion(decoded, nil)
-                } catch let error {
-                    completion(nil, NetworkError.decodeFailure(error))
-                }
-            } else {
-                completion(nil, error)
+            guard let data = data else {
+                completion(nil, NetworkError.noResultsFound)
+                return
+            }
+            do {
+                let decoder = JSONDecoder()
+                let decoded = try decoder.decode(type, from: data)
+                completion(decoded, nil)
+            } catch let error {
+                completion(nil, NetworkError.decodeFailure(error))
             }
         }
         task.resume()
