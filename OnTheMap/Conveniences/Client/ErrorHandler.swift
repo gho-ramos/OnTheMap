@@ -37,10 +37,17 @@ class ErrorHandler: NSObject {
     /// - Returns: Request status set { Success, Error }
     class func checkStatus(_ data: Data?, _ response: URLResponse?, _ err: Error?) -> RequestStatus {
         guard err == nil else {
-            let error = ErrorHandler.buildError(message: "There was an error with your request",
-                                                code: 0,
-                                                err: err)
-            return RequestStatus(success: false, error: NetworkError.error(error))
+            let newError = ErrorHandler
+                .buildError(message: "There was an error with your request", code: 0, err: err)
+            if let error = err as? URLError {
+                switch error.code {
+                case .notConnectedToInternet, .networkConnectionLost:
+                    return RequestStatus(success: false, error: NetworkError.unavailableConnection(error))
+                default:
+                    return RequestStatus(success: false, error: NetworkError.error(newError))
+                }
+            }
+            return RequestStatus(success: false, error: NetworkError.error(newError))
         }
 
         guard let statusCode = (response as? HTTPURLResponse)?.statusCode, statusCode != 403 else {

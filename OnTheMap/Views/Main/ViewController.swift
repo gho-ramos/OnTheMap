@@ -38,7 +38,7 @@ class ViewController: UIViewController {
                 self.completeLogin(for: authentication)
             }, failure: { error in
                 Loader.hide()
-                Dialog.show(error: error)
+                self.displayLoginDialogFailure(for: error)
             })
         } else {
             Dialog.show(message: "You must inform a username and a password to login", title: "Wait!")
@@ -93,9 +93,27 @@ extension ViewController: LoginButtonDelegate {
             self.completeLogin(for: authentication)
         }, failure: { error in
             Loader.hide()
-            Dialog.show(message: "Sorry, we were not able to complete the authentication, try again later.",
-                        title: "Login Failed")
+            self.displayLoginDialogFailure(for: error)
         })
+    }
+
+    func displayLoginDialogFailure(for error: NetworkError?) {
+        let message = "Sorry, we were not able to complete the authentication, try again later."
+        let title = "Login failed"
+        guard let error = error else {
+            Dialog.show(message: message, title: title)
+            return
+        }
+        switch error {
+        case .unavailableConnection:
+            Dialog.show(message: "Check your internet connection, and try again.",
+                        title: "No Internet Connection")
+        case .unauthorized:
+            Dialog.show(message: "Check your login and/or password and try again.",
+                        title: "Invalid Credentials")
+        default:
+            Dialog.show(message: message, title: title)
+        }
     }
 
     func loginButtonDidCompleteLogin(_ loginButton: LoginButton, result: LoginResult) {

@@ -15,4 +15,5 @@ enum NetworkError: Error {
     case decodeFailure(Error?)
     case networkFailure(Error?)
     case noResultsFound(Error?)
+    case unavailableConnection(URLError?)
 }
